@@ -18,7 +18,7 @@ router.get('/create', function(req, res, next) {
 
 /* POST users/create. */
 router.post('/create', function(req, res, next) {
-	userService.addUser(req.body, function(err) {
+	userService.addUser(req.body, function(err, userSaved) {
 		if (err) {
 			console.log("This error is from routes/users.js = " + err);
 			var vm = {
@@ -29,25 +29,51 @@ router.post('/create', function(req, res, next) {
 			delete vm.input.password;
 		  return res.render('users/create', vm); // in case of error
 		}
-		req.login(req.body, function(err) {
+		req.login(userSaved, function(err) {
 			res.redirect('/users/home'); // in case of success
 		});
 	});
 });
 
 /* GET users/home. */
-router.get('/home', function(req, res, next) {
-	var vm = {
-		title: req.user ? req.user.firstName : 'Home Page',
-		firstName: req.user ? req.user.firstName : null
-	};
-  res.render('users/home', vm);
+router.get('/home', ensureAuthenticated, function(req, res, next) {
+	userService.findUserByID(req.session.passport.user, function(err, user) {
+		if (err) {
+			console.log(err);
+	 	} else {
+			res.render('users/home', { user: user});
+	 	}
+	});
 });
 
 /* POST users/login. */
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
-	res.redirect('/home');
+	res.redirect('/users/home');
 });
 
+/* GET users/auth/facebook. */
+router.get('/auth/facebook', passport.authenticate('facebook'));
+
+/* GET users/auth/facebook/callback. */
+router.get('/auth/facebook/callback',
+	passport.authenticate('facebook', {
+		failureRedirect: '/'
+	}),
+	function(req, res) {
+		console.log("User " + req.session.passport.user + " has signed in successfully");
+		res.redirect('/users/home');
+	});
+
+/* GET users/logout. */
+router.get('/logout', function(req, res){
+	req.logout();
+	req.session.destroy();
+	res.redirect('/');
+});
+
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) { return next(); }
+	res.redirect('/')
+}
 
 module.exports = router;

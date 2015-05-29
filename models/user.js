@@ -2,12 +2,36 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var userService = require('../services/user-service');
 
+var conditionalRequire = {
+  validator: function (value) {
+    if (this.email !== '') {
+    	if (this.password === '') {
+    		return false;
+    	} else {
+    		return true;
+    	}
+    } else {
+    	if (this.oauthID !== '') {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+  },
+  msg: 'Either sign up with Facebook or use your email/password',
+};
+
+// TODO check validator function
 var userSchema = new Schema ({
 	firstName: {type:String, required: 'Please enter your first name'},
 	lastName: {type:String, required: 'Please enter your last name'},
-	email: {type:String, required: 'Please enter your email address'},
-	password: {type:String, required: 'Please enter your password'},
+	// email: {type:String, required: 'Please enter your email address'},
+	email: {type:String, validate: conditionalRequire},
+	// password: {type:String, required: 'Please enter your password'},
+	password: {type:String, validate: conditionalRequire},
 	imageUrl: {type:String},
+	oauthProvider: {type:String},
+	oauthID: {type:Number},
 	created: {type: Date, default: Date.now}
 });
 
