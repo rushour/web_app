@@ -3,6 +3,7 @@
 </div>
 {{#if user}}
   <h2>Hello, {{user.firstName}}.</h2>
+  <img src={{user.imageUrl}} alt="Profile Picture">
   <a href="/users/logout">Logout</a>
 {{else}}
   <h2>No one is signed in</h2>
