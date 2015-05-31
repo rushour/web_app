@@ -3,47 +3,76 @@
   <head>
     <title>RusHour {{#if title}} | {{title}}{{/if}}</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap.techie.css' />
-      <!-- Docs Custom styles -->
-		  <style>
-				body,html{overflow-x:hidden}
-				body{padding:0 20px 0;/*background-color: #313131;*/}
-				footer{border-top:1px solid #ddd;padding:30px;margin-top:50px}
-				.row>[class*=col-]{margin-bottom:40px}
-				.navbar-container{position:relative;min-height:100px}
-				.navbar.navbar-fixed-bottom,.navbar.navbar-fixed-top{position:absolute;top:0px;z-index:0}
-				.navbar.navbar-fixed-bottom .container,.navbar.navbar-fixed-top .container{max-width:90%}
-				.btn-group{margin-bottom:10px}
-				.form-inline input[type=password],.form-inline input[type=text],.form-inline select{width:180px}
-				.input-group{margin-bottom:10px}.pagination{margin-top:0}.navbar-inverse{margin:0px 0}
-		  </style>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
   <body>
-	  <div class="row">
-	    <div class="col-sm-12 col-lg-12 navbar-container">
-	        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-	          <div class="navbar-header">
-	            <a class="navbar-brand" href="#">RusHour</a>
-	          </div>
-
-	          <!-- Collect the nav links, forms, and other content for toggling -->
-	          <div class="collapse navbar-collapse navbar-ex3-collapse">
-	            <ul class="nav navbar-nav">
-	              <li class="active"><a href="#">Link</a></li>
-	              <li><a href="#">Link</a></li>
-	            </ul>
-	            <form class="navbar-form" role="search">
-	              <div class="form-group">
-	                <input type="text" class="form-control" placeholder="Search">
+	  <!-- New Version -->
+	  <div class="navbar navbar-custom navbar-fixed-top">
+	   <div class="navbar-header"><a class="navbar-brand" href="#">RusHour</a>
+	        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </a>
+	      </div>
+	      <div class="navbar-collapse collapse">
+	        <ul class="nav navbar-nav">
+	          <li class="active"><a href="#">Home</a></li>
+	          <li><a href="#">Link</a></li>
+	          <li><a href="#">Link</a></li>
+	          <li>&nbsp;</li>
+	        </ul>
+	        <form class="navbar-form">
+	          <div class="form-group" style="display:inline;">
+	            <div class="input-group">
+	              <div class="input-group-btn">
+	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>
+	                <ul class="dropdown-menu">
+	                  <li><a href="#"></a></li>
+	                  <li><a href="#"></a></li>
+	                  <li><a href="#"></a></li>
+	                  <li><a href="#"></a></li>
+	                  <li><a href="#"></a></li> 
+	                </ul>
 	              </div>
-	            </form>
-	          </div><!-- /.navbar-collapse -->
-	        </nav>
-	    </div>  
-	  </div>  
-    {{{body}}}
+	              <input type="text" class="form-control" placeholder="Search">
+	              <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
+	            </div>
+	          </div>
+	        </form>
+	      </div>
+	  </div>
+
+	  <div id="map-canvas" class="hidden-xs hidden-sm"></div>
+	  <div class="container-fluid" id="main">
+	    <div class="row">
+	    	<div class="col-xs-10 col-lg-8" id="left">
+	        <h2></h2>
+	        <div class="jumbotron">
+	          <div class="container">
+	        		<h3>Find a restaurant</h3>
+								<form action="#">
+									<div class="input-group">
+									   <input class="btn btn-lg" name="rest-name" id="rest-name" type="text" placeholder="Restaurant Name" required>
+									   <input class="btn btn-lg" name="rest-loc" id="rest-loc" type="text" placeholder="Restaurant Location" required>
+									   <button class="btn btn-info btn-lg" type="submit">Submit</button>
+									</div>
+								</form>
+								<br>   
+	          </div>
+	        </div>
+	        <!-- <div class="panel panel-default">
+	          <div class="panel-heading"><a href=""></a></div>
+	        </div>
+	        <p>Blah.</p> -->      
+	      </div>
+	      <div class="col-xs-4"></div>
+	      
+	    </div>
+	  </div>
 
   <!-- Main Scripts-->
   <script src="/js/jquery.js"></script>
@@ -51,5 +80,33 @@
   
   <!-- Bootstrap 3 has typeahead optionally -->
   <script src="/js/typeahead.min.js"></script>
+  <script type="text/javascript">
+  	function success(position) {
+  	  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  	  
+  	  var options = {
+  	    zoom: 15,
+  	    center: coords,
+  	    mapTypeControl: false,
+  	    navigationControlOptions: {
+  	    	style: google.maps.NavigationControlStyle.SMALL
+  	    },
+  	    mapTypeId: google.maps.MapTypeId.ROADMAP
+  	  };
+  	  var map = new google.maps.Map(document.getElementById("map-canvas"), options);
+
+  	  var marker = new google.maps.Marker({
+  	      position: coords,
+  	      map: map,
+  	      title:"You are here!"
+  	  });
+  	}
+
+  	if (navigator.geolocation) {
+  	  navigator.geolocation.getCurrentPosition(success);
+  	} else {
+  	  error('Geo Location is not supported');
+  	}
+  </script>
   </body>
 </html>
