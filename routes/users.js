@@ -3,8 +3,11 @@ var router = express.Router();
 var userService = require('../services/user-service');
 var passport = require('passport');
 
+//TODO add bcrypt to passwords
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+	// TODO think of suitable functionality for this
   res.send('respond with a resource');
 });
 

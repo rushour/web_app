@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var userService = require('../services/user-service');
 
+// checks that email/password must exist or oauthID must exist
 var conditionalRequire = {
   validator: function (value) {
     if (this.email !== '') {
@@ -18,7 +19,7 @@ var conditionalRequire = {
     	}
     }
   },
-  msg: 'Either sign up with Facebook or use your email/password',
+  msg: 'Either sign up with an OAuth service or use your email/password',
 };
 
 // TODO check validator function

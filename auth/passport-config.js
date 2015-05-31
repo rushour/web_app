@@ -29,22 +29,20 @@ module.exports = function() {
 				if (err) { console.log(err); }
 				if (!err && user != null) {
 					// the user already exists
-					console.log(profile);
+					console.log("This user has already signed up " + profile);
 					done(null, user);
 				} else {
-					// TODO put checks for all data from facebook (first name, last name, profile id, image etc)
-					console.log(profile);
+					// user does not exits, making new one
+					console.log("This use has signed up " + profile);
 					var user = {
 						oauthID: profile.id,
 						firstName: profile.name.givenName ? profile.name.givenName : '',
 						lastName: profile.name.familyName ? profile.name.familyName : '',
 						email: profile.emails ? profile.emails[0].value : null,
-						imageUrl: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg',
+						imageUrl: profile.photos ? profile.photos[0].value : '/images/unknown_user.png', //TODO check if this image works
 						gender: profile.gender ? profile.gender : null,
 						oauthLink: profile.link ? profile.link : null,
 						oauthProvider: 'facebook'
-						// TODO add email from facebook (make sure to handle the case without any email address)
-						// TODO add image URL from facebook
 				 	};
 					userService.addUser(user, function(err, userSaved) {
 						if (err) {
