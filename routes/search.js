@@ -5,6 +5,7 @@ var restaurantService = require('../services/restaurant-service');
 
 /* GET search home page. */
 router.get('/', function(req, res, next) {
+	// input param is 'searchTerm'
 	console.log(req.query.searchTerm);
 	restaurantService.regexSearch(req.query.searchTerm, function(err, result) {
 		if (err) {
@@ -60,9 +61,26 @@ router.post('/createSearchHistoryCategory', function(req, res, next) {
 	});
 });
 
-/* GET /search. For autocomplete etc. */
-router.get('/search', function(req, res) {
-   
+/* GET /getUserSearchedRestaurants. For autocomplete etc. */
+router.get('/getUserSearchedRestaurants/:userID', function(req, res) {
+	searchService.getUserSearchedRestaurants(req.params.userID, function(err, searchHistoryRestaurants) {
+		if (err) {
+			console.log("This error is from routes/search.js = " + err);
+			return res.status(500).json({error: 'Failed to get restaurant search history of user'});
+		}
+		res.json(searchHistoryRestaurants);
+	}); 
+});
+
+/* GET /getUserSearchedCategories. For autocomplete etc. */
+router.get('/getUserSearchedCategories/:userID', function(req, res) {
+	searchService.getUserSearchedCategories(req.params.userID, function(err, searchHistoryCategories) {
+		if (err) {
+			console.log("This error is from routes/search.js = " + err);
+			return res.status(500).json({error: 'Failed to get category search history of user'});
+		}
+		res.json(searchHistoryCategories);
+	}); 
 });
 
 module.exports = router;
