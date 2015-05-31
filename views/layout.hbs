@@ -47,26 +47,9 @@
 	  <!-- Section for Search -->
 	  <section class="container-fluid" id="search">
 	  <br><br><br><br>
-	    <!-- <div class="row">
-	      
-	    </div>
-	      <div class="container">
-	        <div class="row">
-	            <div class="col-sm-7 col-sm-offset-4">
-	              <form>
-	                <div class="form-group">
-	                  <div class="col-lg-10">
-	                    <input type="text" class="form-control" id="inputSearch" placeholder="Search Restaurant">
-	                  </div>
-	                </div>
-	              </form>
-	            </div>
-	        </div>
-	      	<div class="row"><br></div>
-	    </div> -->
 	    <div class="row">
 	    	<div class="col-sm-8 col-sm-offset-3">
-	    			    <div class="card-container">
+	    			    <div class="card-container manual-flip">
 	    		        <div class="card">
 	    		            <div class="front">
 	    		            		<div class="col-sm-6 col-sm-offset-3">
@@ -79,30 +62,37 @@
                   	                <div class="form-group">
                   	                  <div class="col-lg-10">
                   	                    <input type="text" class="form-control" id="inputSearch" placeholder="Search Restaurant">
+                  	                    <br>
+                  	                    <div class="btn-group">
+                  	                      <button class="btn btn-primary" class="btn btn-block btn-primary" type="submit" onclick="rotateCard(this)">Search</button>
+                  	                    </div>
                   	                  </div>
                   	                </div>
                   	              </form>
                   	            </div>
                   	        </div>
 	    		                </div>
-	    		            </div> <!-- end front panel -->
+	    		            </div>
 	    		            <div class="back">
 	    		                <div class="header">
-	    		                    <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+	    		                    <h5 class="motto">Restaurant Name</h5>
 	    		                </div> 
 	    		                <div class="content">
 	    		                    <div class="main">
-	    		                        <h4 class="text-center">Experince</h4>
-	    		                        <p>Inna was working with our team since 2012.</p>
-	    		                        <h4 class="text-center">Areas of Expertise</h4>
-	    		                        <p>Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
+	    		                        <h4 class="text-center">Details</h4>
+	    		                        <p>Details ki description.</p>
+	    		                        <h4 class="text-center">Chart maybe</h4>
+	    		                        <p>...</p>
+	    		                    </div>
+	    		                    <div class="btn-group center">
+	    		                      <button class="btn btn-block btn-primary" type="submit" onclick="rotateCard(this)">Back to Search</button>
 	    		                    </div>
 	    		                </div>
 	    		                <div class="footer">
 	    		                    <div class="social-links text-center">
-	    		                        <a href="http://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-	    		                        <a href="http://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-	    		                        <a href="http://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+	    		                        <a href="" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+	    		                        <a href="" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+	    		                        <a href="" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
 	    		                    </div>
 	    		                </div>
 	    		            </div> <!-- end back panel -->
@@ -216,6 +206,21 @@
         }
     });
 
+    // Rotating Card
+    $().ready(function(){
+        $('[rel="tooltip"]').tooltip();
+        
+    });
+    
+    function rotateCard(btn){
+        var $card = $(btn).closest('.card-container');
+        console.log($card);
+        if($card.hasClass('hover')){
+            $card.removeClass('hover');
+        } else {
+            $card.addClass('hover');
+        }
+    }
   </script>
   </body>
 </html>
