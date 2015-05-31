@@ -1,0 +1,17 @@
+<div class="widget">
+  <form name="create-searchHistoryRestaurant-form" id="create-searchHistoryRestaurant-form" method="post">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required value="{{input.username}}" />
+    </div>
+    <div class="form-group">
+      <label for="clientname">Clientname</label>
+      <input type="text" id="clientname" name="clientname" required value="{{input.clientname}}" />
+    </div>
+    <div class="form-submit">
+      <input type="submit" value="Create my account" />
+    </div>
+    <span style="color:red;">{{error}}</span>
+    <span style="color:green;">{{message}}</span>
+  </form>
+</div>

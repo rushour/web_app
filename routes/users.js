@@ -7,7 +7,7 @@ var passport = require('passport');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-	// TODO think of suitable functionality for this
+	// TODO think of suitable functionality for this (route to home if logged in, else login page)
   res.send('respond with a resource');
 });
 

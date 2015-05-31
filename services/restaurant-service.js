@@ -10,6 +10,7 @@ exports.addRestaurant = function(_restaurant, next) {
 		country: _restaurant.country,
 		latitude: _restaurant.latitude,
 		longitude: _restaurant.longitude,
+		currentRush: _restaurant.currentRush,
 		imageUrl: _restaurant.imageUrl
 	});
 
@@ -35,6 +36,12 @@ exports.findRestaurantByClientname = function(_clientname, next) {
 
 exports.findRestaurantByID = function(id, next) {
 	Restaurant.findOne({_id: id}, function(err, restaurant) {
+		next(err, restaurant);
+	});
+};
+
+exports.deleteRestaurantByClientname = function(_clientname, next) {
+	Restaurant.remove({clientname: _clientname}, function(err, restaurant) {
 		next(err, restaurant);
 	});
 };
