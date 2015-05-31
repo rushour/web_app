@@ -5,10 +5,12 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap.techie.css' />
+    <link href="/stylesheets/rotating-card.css" rel="stylesheet" />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
   <body>
+  	<!-- Top Navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -24,90 +26,142 @@
               </form>
             </div>
           </div>
-        </nav>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-              <ul class="nav nav-sidebar navbar navbar-trans" role="navigation">
-                <li><a href="#search">Search</a></li>
-                <li><a href="#whats-hot">What's Hot</a></li>
-                <li><a href="#around-me">Around Me</a></li>
-              </ul>
-              <ul class="nav nav-sidebar navbar navbar-trans" role="navigation">
-                <li><a href="#search">Sign In</a></li>
-                <li><a href="#whats-hot">Join RusHour</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <section class="container-fluid" id="search">
-        <br>
-          <div class="row">
-            <div class="col-sm-6 col-sm-offset-4">
-              <h1 class="text-center v-center">Search.</h1>
-            </div>
-          </div>
-            <div class="container">
-              <div class="row">
-                  <div class="col-sm-7 col-sm-offset-4">
-                    <form>
-                      <div class="form-group">
-                        <div class="col-lg-10">
-                          <input type="text" class="form-control" id="inputSearch" placeholder="Search Restaurant">
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-              </div>
-            <div class="row"><br></div>
-          </div>
-        </section>
-        <section class="container-fluid" id="whats-hot">
-            <h1 class="text-center v-center">What's Hot.</h1>
-            <div class="container">
-              <div class="row">
-                  <div class="col-sm-4">
-                    <div class="row">
-                      <div class="col-sm-10 col-sm-offset-3 text-center"><h3>Robust</h3><p>There is other content and snippets of details or features that can be placed here..</p><i class="fa fa-cog fa-5x"></i></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4 col-sm-offset-3 text-center">
-                    <div class="row">
-                      <div class="col-sm-10 col-sm-offset-1 text-center"><h3>Simple</h3><p>You may also want to create content that compells users to scroll down more..</p><i class="fa fa-user fa-5x"></i></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4 col-sm-offset-3 text-center">
-                    <div class="row">
-                      <div class="col-sm-10 text-center"><h3>Clean</h3><p>In the first 30 seconds of a user's visit to your site they decide if they're going to stay..</p><i class="fa fa-mobile fa-5x"></i></div>
-                    </div>
-                  </div>
-              </div><!--/row-->
-            <div class="row"><br></div>
-          </div><!--/container-->
-        </section>
-        <section class="container-fluid" id="around-me">
-            <h1 class="text-center v-center">Around Me.</h1>
-            <div class="container">
-              <div class="row">
-                  <div class="col-sm-4">
-                    <div class="row">
-                      <div class="col-sm-10 col-sm-offset-3 text-center"><h3>Robust</h3><p>There is other content and snippets of details or features that can be placed here..</p><i class="fa fa-cog fa-5x"></i></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4 col-sm-offset-3 text-center">
-                    <div class="row">
-                      <div class="col-sm-10 col-sm-offset-1 text-center"><h3>Simple</h3><p>You may also want to create content that compells users to scroll down more..</p><i class="fa fa-user fa-5x"></i></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4 col-sm-offset-3 text-center">
-                    <div class="row">
-                      <div class="col-sm-10 text-center"><h3>Clean</h3><p>In the first 30 seconds of a user's visit to your site they decide if they're going to stay..</p><i class="fa fa-mobile fa-5x"></i></div>
-                    </div>
-                  </div>
-              </div><!--/row-->
-            <div class="row"><br></div>
-          </div><!--/container-->
-        </section>
+    </nav>
+    <!-- Left side fixed navbar -->
+	  <div class="container-fluid">
+	    <div class="row">
+	      <div class="col-sm-3 col-md-2 sidebar">
+	        <ul class="nav nav-sidebar navbar navbar-trans" role="navigation">
+	          <li><a href="#search">Search</a></li>
+	          <li><a href="#whats-hot">What's Hot</a></li>
+	          <li><a href="#around-me">Around Me</a></li>
+	        </ul>
+	        <ul class="nav nav-sidebar navbar navbar-trans" role="navigation">
+	          <li><a href="#search">Sign In</a></li>
+	          <li><a href="#whats-hot">Join RusHour</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+
+	  <!-- Section for Search -->
+	  <section class="container-fluid" id="search">
+	  <br><br><br><br>
+	    <!-- <div class="row">
+	      
+	    </div>
+	      <div class="container">
+	        <div class="row">
+	            <div class="col-sm-7 col-sm-offset-4">
+	              <form>
+	                <div class="form-group">
+	                  <div class="col-lg-10">
+	                    <input type="text" class="form-control" id="inputSearch" placeholder="Search Restaurant">
+	                  </div>
+	                </div>
+	              </form>
+	            </div>
+	        </div>
+	      	<div class="row"><br></div>
+	    </div> -->
+	    <div class="row">
+	    	<div class="col-sm-8 col-sm-offset-3">
+	    			    <div class="card-container">
+	    		        <div class="card">
+	    		            <div class="front">
+	    		            		<div class="col-sm-6 col-sm-offset-3">
+	    		            		  <h1 class="text-center v-center">Search.</h1>
+	    		            		</div>
+	    		                <div class="content">
+	    		                    <div class="row">
+                  	            <div class="col-sm-12 col-sm-offset-1">
+                  	              <form>
+                  	                <div class="form-group">
+                  	                  <div class="col-lg-10">
+                  	                    <input type="text" class="form-control" id="inputSearch" placeholder="Search Restaurant">
+                  	                  </div>
+                  	                </div>
+                  	              </form>
+                  	            </div>
+                  	        </div>
+	    		                </div>
+	    		            </div> <!-- end front panel -->
+	    		            <div class="back">
+	    		                <div class="header">
+	    		                    <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+	    		                </div> 
+	    		                <div class="content">
+	    		                    <div class="main">
+	    		                        <h4 class="text-center">Experince</h4>
+	    		                        <p>Inna was working with our team since 2012.</p>
+	    		                        <h4 class="text-center">Areas of Expertise</h4>
+	    		                        <p>Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
+	    		                    </div>
+	    		                </div>
+	    		                <div class="footer">
+	    		                    <div class="social-links text-center">
+	    		                        <a href="http://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+	    		                        <a href="http://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+	    		                        <a href="http://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+	    		                    </div>
+	    		                </div>
+	    		            </div> <!-- end back panel -->
+	    		        </div> <!-- end card -->
+	    		    	</div> <!-- end card-container -->
+	    	</div>
+	    </div>
+	                
+	  </section>
+
+	  <!-- Section for What's Hot -->
+	  <section class="container-fluid" id="whats-hot">
+	      <h1 class="text-center v-center">What's Hot.</h1>
+	      <div class="container">
+	        <div class="row">
+	            <div class="col-sm-4">
+	              <div class="row">
+	                <div class="col-sm-10 col-sm-offset-3 text-center"><h3>Robust</h3><p>There is other content and snippets of details or features that can be placed here..</p><i class="fa fa-cog fa-5x"></i></div>
+	              </div>
+	            </div>
+	            <div class="col-sm-4 col-sm-offset-3 text-center">
+	              <div class="row">
+	                <div class="col-sm-10 col-sm-offset-1 text-center"><h3>Simple</h3><p>You may also want to create content that compells users to scroll down more..</p><i class="fa fa-user fa-5x"></i></div>
+	              </div>
+	            </div>
+	            <div class="col-sm-4 col-sm-offset-3 text-center">
+	              <div class="row">
+	                <div class="col-sm-10 text-center"><h3>Clean</h3><p>In the first 30 seconds of a user's visit to your site they decide if they're going to stay..</p><i class="fa fa-mobile fa-5x"></i></div>
+	              </div>
+	            </div>
+	        </div><!--/row-->
+	      <div class="row"><br></div>
+	    </div><!--/container-->
+	  </section>
+
+	  <!-- Section for Around Me -->
+	  <section class="container-fluid" id="around-me">
+	      <h1 class="text-center v-center">Around Me.</h1>
+	      <div class="container">
+	        <div class="row">
+	            <div class="col-sm-4">
+	              <div class="row">
+	                <div class="col-sm-10 col-sm-offset-3 text-center"><h3>Robust</h3><p>There is other content and snippets of details or features that can be placed here..</p><i class="fa fa-cog fa-5x"></i></div>
+	              </div>
+	            </div>
+	            <div class="col-sm-4 col-sm-offset-3 text-center">
+	              <div class="row">
+	                <div class="col-sm-10 col-sm-offset-1 text-center"><h3>Simple</h3><p>You may also want to create content that compells users to scroll down more..</p><i class="fa fa-user fa-5x"></i></div>
+	              </div>
+	            </div>
+	            <div class="col-sm-4 col-sm-offset-3 text-center">
+	              <div class="row">
+	                <div class="col-sm-10 text-center"><h3>Clean</h3><p>In the first 30 seconds of a user's visit to your site they decide if they're going to stay..</p><i class="fa fa-mobile fa-5x"></i></div>
+	              </div>
+	            </div>
+	        </div><!--/row-->
+	      <div class="row"><br></div>
+	    </div><!--/container-->
+	  </section>
 
   <!-- Main Scripts-->
   <script src="/js/jquery.js"></script>
