@@ -4,6 +4,8 @@ var userService = require('../services/user-service');
 var passport = require('passport');
 
 //TODO add bcrypt to passwords
+//TODO edit users
+//TODO view user details json
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

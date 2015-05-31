@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var restaurantService = require('../services/restaurant-service');
 
+// TODO update restaurant
+
 /* GET restaurants listing. */
 router.get('/', function(req, res, next) {
   restaurantService.getAllRestaurants(function(err, restaurants) {

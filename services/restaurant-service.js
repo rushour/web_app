@@ -45,3 +45,11 @@ exports.deleteRestaurantByClientname = function(_clientname, next) {
 		next(err, restaurant);
 	});
 };
+
+exports.regexSearch = function(searchTerm, next) {
+	var regex = new RegExp(searchTerm, 'i');
+	var query = Restaurant.find({name: regex}).sort({"updated_at":-1}).limit(20);
+	query.exec(function(err, result) {
+		next(err, result);
+	});
+};
