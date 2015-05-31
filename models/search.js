@@ -5,15 +5,15 @@ var Schema = mongoose.Schema;
 
 // schema records which restaurants a user searches for
 var searchHistoryRestaurantSchema = new Schema ({
-	username: {type:String, required: 'Please enter username of searcher'},
-	clientname: {type:String, required: 'Please enter clientname of searched restaurant'}
+	userID: {type:String, required: 'Please enter userID of searcher'},
+	restaurantID: {type:String, required: 'Please enter restaurantID of searched restaurant'}
 });
 
 searchHistoryRestaurantSchema.index({username: 1, clientname: 1}, {unique: true});
 
 // schema records which categories a user searches for
 var searchHistoryCategorySchema = new Schema ({
-	username: {type:String, required: 'Please enter username of searcher'},
+	userID: {type:String, required: 'Please enter userID of searcher'},
 	catgeory: {type:String, required: 'Please enter category of searched restaurant'}
 });
 

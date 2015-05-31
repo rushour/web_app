@@ -1,33 +1,71 @@
 var SearchHistoryRestaurant = require('../models/search').SearchHistoryRestaurant;
 var SearchHistoryCategory = require('../models/search').SearchHistoryCategory;
+var userService = require('./user-service');
+var restaurantService = require('./restaurant-service');
 
-// TODO make sure clientname and username already exist
 exports.addSearchHistoryRestaurant = function(_searchHistoryRestaurant, next) {
-	var newSearchHistoryRestaurant = new SearchHistoryRestaurant({
-		username: _searchHistoryRestaurant.username,
-		clientname: _searchHistoryRestaurant.clientname
-	});
-
-	newSearchHistoryRestaurant.save(function(err, searchHistoryRestaurant) {
-		if (err) {
-			return next(err, searchHistoryRestaurant);
+	userService.findUserByID(_searchHistoryRestaurant.userID, function(err, user) {
+		if (err) { 
+			console.log("This error is from services/search-service.js " + err);
+			return next(err, null);
 		}
-		next(null, searchHistoryRestaurant);
+		if (!err && user != null) {
+			// the user exists
+			restaurantService.findRestaurantByID(_searchHistoryRestaurant.restaurantID, function(err, restaurant) {
+				if (err) { 
+					console.log("This error is from services/search-service.js " + err);
+					return next(err, null);
+				}
+				if (!err && restaurant != null) {
+					// the restaurant also exists
+					var newSearchHistoryRestaurant = new SearchHistoryRestaurant({
+						userID: _searchHistoryRestaurant.userID,
+						restaurantID: _searchHistoryRestaurant.restaurantID
+					});
+
+					newSearchHistoryRestaurant.save(function(err, searchHistoryRestaurant) {
+						if (err) {
+							return next(err, searchHistoryRestaurant);
+						}
+						return next(null, searchHistoryRestaurant);
+					});
+				} else {
+					// restaurant does not exits
+					var error = 'Restaurant does not exist';
+					next(error, null);
+				};
+			});
+		} else {
+			// user does not exits
+			var error = 'User does not exist';
+			next(error, null);
+		};
 	});
 };
 
-// TODO make sure username exists
 exports.addSearchHistoryCategory = function(_searchHistoryCategory, next) {
-	var newSearchHistoryCategory = new SearchHistoryCategory({
-		username: _searchHistoryCategory.username,
-		category: _searchHistoryCategory.category
-	});
-
-	newSearchHistoryCategory.save(function(err, searchHistoryCategory) {
-		if (err) {
-			return next(err, searchHistoryCategory);
+	userService.findUserByID(_searchHistoryRestaurant.userID, function(err, user) {
+		if (err) { 
+			console.log("This error is from services/search-service.js " + err);
+			return next(err, null);
 		}
-		next(null, searchHistoryCategory);
+		if (!err && user != null) {
+			var newSearchHistoryCategory = new SearchHistoryCategory({
+				userID: _searchHistoryCategory.userID,
+				category: _searchHistoryCategory.category
+			});
+
+			newSearchHistoryCategory.save(function(err, searchHistoryCategory) {
+				if (err) {
+					return next(err, searchHistoryCategory);
+				}
+				next(null, searchHistoryCategory);
+			});
+		} else {
+			// user does not exits
+			var error = 'User does not exist';
+			next(error, null);
+		};
 	});
 };
 
