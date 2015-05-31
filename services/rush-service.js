@@ -22,6 +22,10 @@ exports.getRushHistoryOfRestaurant = function(_restaurantID, next) {
 };
 
 exports.getPrediction = function(_restaurantID, _numPredictions, next) {
+	// TODO consider past data of same days
+	// TODO consider exceptional days
+	// TODO sanity test results using excel's predcition functions
+	// TODO make sure to scale results between 0 and 100
 	RushAtRestaurant.find({restaurantID: _restaurantID}, 'rush created', function(err, rushHistory) {
 		if (err) {
 			return next(err, null);

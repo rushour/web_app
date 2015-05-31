@@ -48,7 +48,7 @@ exports.deleteRestaurantByClientname = function(_clientname, next) {
 
 exports.regexSearch = function(searchTerm, next) {
 	var regex = new RegExp(searchTerm, 'i');
-	var query = Restaurant.find({name: regex}).sort({"updated_at":-1}).limit(20);
+	var query = Restaurant.find({name: regex}).sort({"name":1}).limit(20);
 	query.exec(function(err, result) {
 		next(err, result);
 	});
