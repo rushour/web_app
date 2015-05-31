@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var restaurants = require('./routes/restaurants');
 var search = require('./routes/search');
+var rush = require('./routes/rush');
 
 var passportConfig = require('./auth/passport-config');
 passportConfig();
@@ -48,6 +49,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/restaurants', restaurants);
 app.use('/search', search);
+app.use('/rush', rush);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

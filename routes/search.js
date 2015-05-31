@@ -36,7 +36,7 @@ router.post('/createSearchHistoryRestaurant', function(req, res, next) {
 	searchService.addSearchHistoryRestaurant(req.body, function(err, searchHistoryRestaurant) {
 		if (err) {
 			console.log("This error is from routes/search.js = " + err);
-		  return res.status(500).json({error: 'Failed to add restaurant search history'}); // in case of error
+		  return res.status(500).json({error: err}); // in case of error
 		}
 		res.json(searchHistoryRestaurant); // in case of success
 	});
@@ -55,7 +55,7 @@ router.post('/createSearchHistoryCategory', function(req, res, next) {
 	searchService.addSearchHistoryCategory(req.body, function(err, searchHistoryCategory) {
 		if (err) {
 			console.log("This error is from routes/search.js = " + err);
-		  return res.status(500).json({error: 'Failed to add category search history'}); // in case of error
+		  return res.status(500).json({error: err}); // in case of error
 		}
 		res.json(searchHistoryCategory); // in case of success
 	});
@@ -66,7 +66,7 @@ router.get('/getUserSearchedRestaurants/:userID', function(req, res) {
 	searchService.getUserSearchedRestaurants(req.params.userID, function(err, searchHistoryRestaurants) {
 		if (err) {
 			console.log("This error is from routes/search.js = " + err);
-			return res.status(500).json({error: 'Failed to get restaurant search history of user'});
+			return res.status(500).json({error: err});
 		}
 		res.json(searchHistoryRestaurants);
 	}); 
@@ -77,7 +77,7 @@ router.get('/getUserSearchedCategories/:userID', function(req, res) {
 	searchService.getUserSearchedCategories(req.params.userID, function(err, searchHistoryCategories) {
 		if (err) {
 			console.log("This error is from routes/search.js = " + err);
-			return res.status(500).json({error: 'Failed to get category search history of user'});
+			return res.status(500).json({error: err});
 		}
 		res.json(searchHistoryCategories);
 	}); 

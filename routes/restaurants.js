@@ -8,7 +8,7 @@ var restaurantService = require('../services/restaurant-service');
 router.get('/', function(req, res, next) {
   restaurantService.getAllRestaurants(function(err, restaurants) {
   	if (err) {
-  		return res.status(500).json({error: 'Failed to retrieve restaurants'});
+  		return res.status(500).json({error: err});
   	}
   	res.json(restaurants);
   })
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.get('/details/:clientname', function(req, res, next) {
 	restaurantService.findRestaurantByClientname(req.params.clientname, function(err, restaurant) {
 		if (err) {
-			return res.status(500).json({error: 'Failed to retrieve restaurant details'});
+			return res.status(500).json({error: err});
 		}
 		res.json(restaurant);
 	});
@@ -28,7 +28,7 @@ router.get('/details/:clientname', function(req, res, next) {
 router.delete('/delete/:clientname', function(req, res, next) {
 	restaurantService.deleteRestaurantByClientname(req.params.clientname, function(err, restaurant) {
 		if (err) {
-			return res.status(500).json({error: 'Failed to delete restaurant'});
+			return res.status(500).json({error: err});
 		}
 		res.json({message: 'Successfully deleted restaurant'});
 	});
