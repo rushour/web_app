@@ -3,7 +3,7 @@ var router = express.Router();
 var rushService = require('../services/rush-service');
 
 /* GET rush/history/:restaurantID. */
-router.get('/history', function(req, res, next) {
+router.get('/history/:restaurantID', function(req, res, next) {
   rushService.getRushHistoryOfRestaurant(req.params.restaurantID, function(err, rushHistory) {
   	if (err) {
   		console.log("This error is from routes/rush.js = " + err);
