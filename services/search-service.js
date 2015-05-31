@@ -106,15 +106,15 @@ exports.addSearchHistoryCategory = function(_searchHistoryCategory, next) {
 };
 
 exports.getUserSearchedRestaurants = function(_userID, next) {
-	SearchHistoryRestaurant.find({userID: _userID}, function(err, searchHistoryRestaurant) {
+	SearchHistoryRestaurant.find({userID: _userID}, 'restaurantID', function(err, searchHistoryRestaurant) {
 		next(err, searchHistoryRestaurant);
-	}).select('restaurantID');
+	});
 };
 
 exports.getUserSearchedCategories = function(_userID, next) {
-	SearchHistoryCategory.find({userID: _userID}, function(err, searchHistoryCategory) {
+	SearchHistoryCategory.find({userID: _userID}, 'category', function(err, searchHistoryCategory) {
 		next(err, searchHistoryCategory);
-	}).select('category');
+	});
 };
 
 // TODO get users who searched for a restaurant
