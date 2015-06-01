@@ -1,14 +1,101 @@
-<div>
-	<span style="color:green;">{{success}}</span>
-</div>
-{{#if user}}
-  <h2>Hello, {{user.firstName}}.</h2>
-  <img src={{user.imageUrl}} alt="Profile Picture">
-  <a href="/users/logout">Logout</a>
-  <form method='post' action='/users/imageUpload' enctype="multipart/form-data">
-    <input type='file' name='fileUploaded'>
-    <input type="text" id="userID" name="userID" value="{{user._id}}" />
-	<input type='submit'>
-{{else}}
-  <h2>No one is signed in</h2>
-{{/if}}
+<!-- Section for Search -->
+<section class="container-fluid fill" id="search">
+<br><br><br><br>
+  <div class="row">
+  	<div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-3">
+	    <div class="card-container manual-flip">
+        <div class="card">
+            <div class="front">
+          		<div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+          		  <h1 class="text-center v-center">Search</h1>
+          		</div>
+              <div class="content">
+                <div class="row">
+    	            <div class="col-sm-12 col-sm-offset-1 col-md-12 col-md-offset-1">
+  	                <div class="form-group">
+  	                  <div class="col-lg-10 col-sm-10 col-md-10">
+  	                    <input type="text" name="searchBox" class="form-control" id="inputSearch" autocomplete="off" placeholder="Search for..."/>
+												<br/>
+  	                    <br>
+  	                  </div>
+    	              </div>
+    	            </div>
+      	        </div>
+              </div>
+            </div>
+            <div class="back">
+              <div class="header">
+                  <h5 class="motto" id="restaurantName">Restaurant Name</h5>
+              </div> 
+              <div class="content">
+            		<div class="container">
+            		  <div class="row">
+            		    <div class="col-md-4">
+            		      <img src="" height="100" style="max-width: 120px" alt="" class="img-rounded" id="restaurantImage">
+            		    </div>
+            		    <div class="col-md-4">
+            		      <blockquote>
+            		        <!-- <h4 id="restaurantCity">City</h4> -->
+            		        <small><cite title="Source Title" id="restaurantAddress">Gotham, United Kingdom</cite></small>
+            		        <small><cite title="Source Title" id="restaurantCity">Gotham, United Kingdom</cite></small>
+            		        <small><cite title="Source Title" id="restaurantCountry">Gotham, United Kingdom</cite></small>
+            		      </blockquote>
+            		    </div>
+            		  </div>
+              		</div>
+                <div class="btn-group center">
+                  <button class="btn btn-block btn-primary" type="submit" onclick="backToSearch(this)">Back to Search</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    	</div>
+  	</div>
+  </div>
+              
+</section>
+
+<!-- Section for What's Hot -->
+<section class="container-fluid fill" id="whats-hot">
+    <h1 class="text-center v-center">What's Hot.</h1>
+    <div class="container">
+      <div class="row">
+      <div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-3" data-effect="slide-left">
+        <div class="tabbable tabs-right">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#dealsoftheday" data-toggle="tab">Deals of the day</a></li>
+            <li><a href="#favorites" data-toggle="tab">Your Favorites</a></li>
+            <li><a href="#recommendations" data-toggle="tab">Our Favorites</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="dealsoftheday">
+              <p>I'm in Section dealsoftheday.</p>
+            </div>
+            <div class="tab-pane" id="favorites">
+              <p>Howdy, I'm in Section favorites.</p>
+            </div>
+            <div class="tab-pane" id="recommendations">
+              <p>Howdy, I'm in Section recommendations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row"><br></div>
+  </div><!--/container-->
+</section>
+
+<!-- Section for Around Me -->
+<section class="container-fluid fill" id="around-me">
+    <h1 class="text-center v-center">Around Me.</h1>
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-3 text-center"><h3>Robust</h3><p>There is other content and snippets of details or features that can be placed here..</p><i class="fa fa-cog fa-5x"></i></div>
+            </div>
+          </div>
+      </div><!--/row-->
+    <div class="row"><br></div>
+  </div><!--/container-->
+</section>

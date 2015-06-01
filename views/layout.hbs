@@ -3,9 +3,60 @@
   <head>
   	<meta charset="UTF-8">
     <title>RusHour {{#if title}} | {{title}}{{/if}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link href="/stylesheets/rotating-card.css" rel="stylesheet" />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.techie.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
   <body>
-    {{{body}}}
+  	<!-- Top Navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">RusHour</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="font-inverse">Sign In</a></li>
+            <li><a href="#" class="font-inverse">Join RusHour</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- Left side fixed navbar -->
+	  <div class="container-fluid">
+	    <div class="row">
+	      <div class="col-sm-3 col-md-2 sidebar">
+	        <ul class="nav nav-sidebar navbar navbar-trans" role="navigation">
+	          <li><a href="#search">Search</a></li>
+	          <li><a href="#whats-hot">What's Hot</a></li>
+	          <li><a href="#around-me">Around Me</a></li>
+	        </ul>
+	        <ul class="nav nav-sidebar navbar navbar-trans" role="navigation">
+	          <li><a href="#search">Sign In</a></li>
+	          <li><a href="#whats-hot">Join RusHour</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+	  {{{body}}}
+
+  <!-- Main Scripts-->
+  <script src="/js/jquery.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/rushour.js"></script>
+  
+  <!-- Bootstrap 3 has typeahead optionally -->
+  <script src="/js/typeahead.min.js"></script>
+  <script type="text/javascript">
+    
+  </script>
   </body>
 </html>
