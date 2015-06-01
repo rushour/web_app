@@ -9,4 +9,6 @@ config.facebook = {
 	profileFields: ['id', 'displayName', 'name', 'gender', 'emails', 'photos', 'link']
 };
 
+config.imageUploadDirectory = __dirname + '/public/images/profilePictures/';
+
 module.exports = config;

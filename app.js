@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var expressSession = require('express-session');
 
+var busboy = require('connect-busboy');
+
 var config = require('./config');
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -32,6 +34,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(busboy());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(expressSession(

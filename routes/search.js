@@ -3,11 +3,17 @@ var router = express.Router();
 var searchService = require('../services/search-service');
 var restaurantService = require('../services/restaurant-service');
 
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 /* GET search home page. */
 router.get('/', function(req, res, next) {
-	// input param is 'searchTerm'
-	console.log(req.query.searchTerm);
-	restaurantService.regexSearch(req.query.searchTerm, function(err, result) {
+	// input param is 'term'
+	console.log("Search for: " + req.query.term);
+	restaurantService.regexSearch(req.query.term, function(err, result) {
 		if (err) {
 			return res.status(404).json(err);
 		}

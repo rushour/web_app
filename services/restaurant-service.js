@@ -46,6 +46,12 @@ exports.deleteRestaurantByClientname = function(_clientname, next) {
 	});
 };
 
+exports.deleteRestaurantByID = function(id, next) {
+	Restaurant.remove({_id: id}, function(err, restaurant) {
+		next(err, restaurant);
+	});
+};
+
 exports.regexSearch = function(searchTerm, next) {
 	var regex = new RegExp(searchTerm, 'i');
 	var query = Restaurant.find({name: regex}).sort({"name":1}).limit(20);

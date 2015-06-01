@@ -2,6 +2,12 @@ var express = require('express');
 var router = express.Router();
 var restaurantService = require('../services/restaurant-service');
 
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // TODO update restaurant
 
 /* GET restaurants listing. */
@@ -15,8 +21,8 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET restaurants/details/:clientname. */
-router.get('/details/:clientname', function(req, res, next) {
-	restaurantService.findRestaurantByClientname(req.params.clientname, function(err, restaurant) {
+router.get('/details/:restaurantID', function(req, res, next) {
+	restaurantService.findRestaurantByID(req.params.restaurantID, function(err, restaurant) {
 		if (err) {
 			return res.status(500).json({error: err});
 		}
@@ -25,8 +31,8 @@ router.get('/details/:clientname', function(req, res, next) {
 });
 
 /* DELETE restaurants/delete/:clientname. */
-router.delete('/delete/:clientname', function(req, res, next) {
-	restaurantService.deleteRestaurantByClientname(req.params.clientname, function(err, restaurant) {
+router.delete('/delete/:restaurantID', function(req, res, next) {
+	restaurantService.deleteRestaurantByID(req.params.restaurantID, function(err, restaurant) {
 		if (err) {
 			return res.status(500).json({error: err});
 		}
