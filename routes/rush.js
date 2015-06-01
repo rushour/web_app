@@ -21,7 +21,8 @@ router.get('/create', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
 		} else {
 			var vm = {
-				title: 'Add rush for restaurant'
+				title: 'Add rush for restaurant',
+				user: user
 			};
 		  res.render('rush/create', vm);
 		}

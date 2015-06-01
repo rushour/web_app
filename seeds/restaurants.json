@@ -1,0 +1,15 @@
+[
+	{
+		"name" : "Food Place", 
+		"clientname" : "foodplace", 
+		"address" : "Tariq Road", 
+		"city" : "Lahore", 
+		"country" : "Pakistan", 
+		"latitude" : 31.512358, 
+		"longitude" : 74.384153, 
+		"currentRush" : 40, 
+		"__v" : 0,
+		"imageUrl" : "/images/restaurantPictures/foodplace.jpg",
+		"category": "fastfood"
+	}
+]

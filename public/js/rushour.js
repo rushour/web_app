@@ -82,9 +82,9 @@ $(function () {
       rotateCard(this);
       isValidSearch = true;
       resultID = ui.item.value;
-      if (document.getElementById('facebook_user_id')) {
-        var facebook_user_id = document.getElementById('facebook_user_id').innerHTML;
-        fillCardBack(ui.item.value, facebook_user_id);
+      if (document.getElementById('userID')) {
+        var userID = document.getElementById('userID').innerHTML;
+        fillCardBack(ui.item.value, userID);
       } else {
         fillCardBack(ui.item.value, "-1");
       }
@@ -145,13 +145,10 @@ $('a[href*=#]:not(a[name=whatshot-tabs])').click(function() {
 });
 
 
-function fillCardBack(id, fb_id) {
+function fillCardBack(id, _userID) {
   console.log("...");
   var finalUrl;
-  if (fb_id != "-1")
-    finalUrl = 'http://goharirfan.me/services/id/'+id+'?user_facebook_id='+fb_id;
-  else
-    finalUrl = 'http://localhost:3000/restaurants/details/'+id;
+  finalUrl = 'http://localhost:3000/restaurants/details/'+id;
   
   $.ajax({
     type: "GET",
@@ -171,7 +168,25 @@ function fillCardBack(id, fb_id) {
     error: function(e) { 
       console.log(e);
     } 
-  }); 
+  });
+
+  if (_userID != "-1") {
+	  $.ajax({
+	    type: "POST",
+	    cache: true,
+	    url: 'http://localhost:3000/search/createSearchHistoryRestaurant',
+	    dataType: 'json',
+	    data: {userID: _userID, restaurantID: id},
+	    
+	    success: function(data){
+	    	console.log("saved user search");
+	      console.log(data);
+	    }, 
+	    error: function(e) { 
+	      console.log(e);
+	    } 
+	  });
+	}
 }
 
 

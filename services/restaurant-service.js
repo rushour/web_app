@@ -60,11 +60,11 @@ exports.regexSearch = function(searchTerm, next) {
 	});
 };
 
-exports.addImageToRestaurant = function(id, _imageUrl, next) {
-	var conditions = {_id: id};
+exports.addImageToRestaurant = function(_clientname, _imageUrl, next) {
+	var conditions = {clientname: _clientname};
 	var update = {$set: {imageUrl: _imageUrl}};
 	console.log(_imageUrl);
-	console.log(id);
+	console.log(_clientname);
 	var options = {upsert: true};
 	Restaurant.update(conditions, update, options, function(err) {
 		if (err) {

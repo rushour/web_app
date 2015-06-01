@@ -29,7 +29,8 @@ router.get('/home', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
 		} else {
 			var vm = {
-				title: 'Create search history'
+				title: 'Create search history',
+				user: user
 			};
 		  res.render('search/home', vm);		
 		}
@@ -43,7 +44,8 @@ router.get('/createSearchHistoryRestaurant', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
 		} else {
 			var vm = {
-				title: 'Create restaurant search history'
+				title: 'Create restaurant search history',
+				user: user
 			};
 		  res.render('search/createSearchHistoryRestaurant', vm);
 		}
@@ -56,8 +58,27 @@ router.post('/createSearchHistoryRestaurant', function(req, res, next) {
 		if (err) {
 			console.log("This error is from routes/search.js = " + err);
 		  return res.status(500).json({error: err}); // in case of error
+		} else {
+			restaurantService.findRestaurantByID(req.body.restaurantID, function(err, restaurant) {
+				if (err) {
+					console.log("This error is from routes/search.js = " + err);
+				  return res.status(500).json({error: err}); // in case of error
+				} else {
+					var shc = {
+						userID: req.body.userID,
+						category: restaurant.category
+					}
+					searchService.addSearchHistoryCategory(shc, function(err, searchHistoryCategory) {
+						if (err) {
+							console.log("This error is from routes/search.js = " + err);
+						  return res.status(500).json({error: err}); // in case of error	
+						} else {
+							return res.json(searchHistoryRestaurant); // in case of success
+						}
+					});
+				}
+			});
 		}
-		res.json(searchHistoryRestaurant); // in case of success
 	});
 });
 
@@ -68,7 +89,8 @@ router.get('/createSearchHistoryCategory', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
 		} else {
 			var vm = {
-				title: 'Create category search history'
+				title: 'Create category search history',
+				user: user
 			};
 		  res.render('search/createSearchHistoryCategory', vm);
 		}

@@ -23,8 +23,15 @@ exports.addSearchHistoryRestaurant = function(_searchHistoryRestaurant, next) {
 			return next(err, null);
 		}
 		if (!err && searchHistoryRestaurant != null) {
-			// user has already searched for this restaurant
-			return next(null, searchHistoryRestaurant);
+			// user has already searched for this restaurant so increment
+			SearchHistoryRestaurant.findByIdAndUpdate({ _id: searchHistoryRestaurant._id }, {$inc: {views:1}}, function (err, data) {
+				if (err) {
+					console.log("This error is from services/search-service.js " + err);
+					return next(err, null);			
+				} else {
+					return next(null, searchHistoryRestaurant);
+				}
+			});
 		} else {
 			userService.findUserByID(_searchHistoryRestaurant.userID, function(err, user) {
 				if (err) {
@@ -75,8 +82,15 @@ exports.addSearchHistoryCategory = function(_searchHistoryCategory, next) {
 			return next(err, null);
 		}
 		if (!err && searchHistoryCategory != null) {
-			// user has already searched for this category
-			return next(null, searchHistoryCategory);
+			// user has already searched for this category so increment
+			SearchHistoryCategory.findByIdAndUpdate({ _id: searchHistoryCategory._id }, {$inc: {views:1}}, function (err, data) {
+				if (err) {
+					console.log("This error is from services/search-service.js " + err);
+					return next(err, null);			
+				} else {
+					return next(null, searchHistoryCategory);
+				}
+			});
 		} else {
 			userService.findUserByID(_searchHistoryCategory.userID, function(err, user) {
 				if (err) { 

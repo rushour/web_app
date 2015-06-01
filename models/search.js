@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var searchHistoryRestaurantSchema = new Schema ({
 	userID: {type:String, required: 'Please enter userID of searcher'},
 	restaurantID: {type:String, required: 'Please enter restaurantID of searched restaurant'},
+	views: {type:Number, default: 1}, // intial value when entry added
 	created: {type:Date, default: Date.now}
 });
 
@@ -12,6 +13,7 @@ var searchHistoryRestaurantSchema = new Schema ({
 var searchHistoryCategorySchema = new Schema ({
 	userID: {type:String, required: 'Please enter userID of searcher'},
 	category: {type:String, required: 'Please enter category of searched restaurant'},
+	views: {type:Number, default: 1}, // intial value when entry added
 	created: {type:Date, default: Date.now}
 });
 
