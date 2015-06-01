@@ -6,7 +6,7 @@ config.network = {
 };
 
 config.mongo = {
-	IP: 'rushour.pk',
+	IP: 'localhost',
 	port: 27017
 };
 
