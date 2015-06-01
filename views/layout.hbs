@@ -7,6 +7,7 @@
     <link href="/stylesheets/rotating-card.css" rel="stylesheet" />
     <link rel='stylesheet' href='/stylesheets/bootstrap.techie.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
   <body>
@@ -45,7 +46,7 @@
 	  </div>
 
 	  <!-- Section for Search -->
-	  <section class="container-fluid" id="search">
+	  <section class="container-fluid fill" id="search">
 	  <br><br><br><br>
 	    <div class="row">
 	    	<div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-3">
@@ -53,58 +54,62 @@
 	    		        <div class="card">
 	    		            <div class="front">
 	    		            		<div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-	    		            		  <h1 class="text-center v-center">Search.</h1>
+	    		            		  <h1 class="text-center v-center">Search</h1>
 	    		            		</div>
 	    		                <div class="content">
 	    		                    <div class="row">
                   	            <div class="col-sm-12 col-sm-offset-1 col-md-12 col-md-offset-1">
-                  	              <form>
                   	                <div class="form-group">
                   	                  <div class="col-lg-10 col-sm-10 col-md-10">
-                  	                    <input type="text" class="form-control" id="inputSearch" placeholder="Search Restaurant">
+                  	                    <input type="text" name="searchBox" class="form-control" id="inputSearch" autocomplete="off" placeholder="Search for..."/>
+																				<br/>
                   	                    <br>
-                  	                    <div class="btn-group">
-                  	                      <button class="btn btn-primary" class="btn btn-block btn-primary" type="submit" onclick="rotateCard(this)">Search</button>
-                  	                    </div>
                   	                  </div>
                   	                </div>
-                  	              </form>
                   	            </div>
                   	        </div>
 	    		                </div>
 	    		            </div>
 	    		            <div class="back">
 	    		                <div class="header">
-	    		                    <h5 class="motto">Restaurant Name</h5>
+	    		                    <h5 class="motto" id="restaurantName">Restaurant Name</h5>
 	    		                </div> 
 	    		                <div class="content">
-	    		                    <div class="main">
-	    		                        <h4 class="text-center">Details</h4>
-	    		                        <p>Details ki description.</p>
-	    		                        <h4 class="text-center">Chart maybe</h4>
+	    		                		<div class="container">
+	    		                		  <div class="row">
+	    		                		    <div class="span2">
+	    		                		      <img src=""  alt="" class="img-rounded" id="restaurantImage">
+	    		                		    </div>
+	    		                		    <div class="span4">
+	    		                		      <blockquote>
+	    		                		        <!-- <h4 id="restaurantCity">City</h4> -->
+	    		                		        <small><cite title="Source Title" id="restaurantAddress">Gotham, United Kingdom</cite></small>
+	    		                		        <small><cite title="Source Title" id="restaurantCity">Gotham, United Kingdom</cite></small>
+	    		                		        <small><cite title="Source Title" id="restaurantCountry">Gotham, United Kingdom</cite></small>
+	    		                		      </blockquote>
+	    		                		    </div>
+	    		                		  </div>
+	    		                		</div>
+	    		                    <!-- <div class="main">
+	    		                        <h4 class="text-center" id="restaurantAddress">Address</h4>
+	    		                        <h4 class="text-center" id="restaurantCity">City</h4>
+	    		                        <h4 class="text-center" id="restaurantCountry">Country</h4>
 	    		                        <p>...</p>
-	    		                    </div>
+	    		                    </div> -->
 	    		                    <div class="btn-group center">
-	    		                      <button class="btn btn-block btn-primary" type="submit" onclick="rotateCard(this)">Back to Search</button>
+	    		                      <button class="btn btn-block btn-primary" type="submit" onclick="backToSearch(this)">Back to Search</button>
 	    		                    </div>
 	    		                </div>
-	    		                <div class="footer">
-	    		                    <div class="social-links text-center">
-	    		                        <a href="" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-	    		                        <a href="" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-	    		                        <a href="" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
-	    		                    </div>
-	    		                </div>
-	    		            </div> <!-- end back panel -->
-	    		        </div> <!-- end card -->
-	    		    	</div> <!-- end card-container -->
+	    		            </div>
+	    		        </div>
+	    		    	</div>
 	    	</div>
 	    </div>
 	                
 	  </section>
 
 	  <!-- Section for What's Hot -->
-	  <section class="container-fluid" id="whats-hot">
+	  <section class="container-fluid fill" id="whats-hot">
 	      <h1 class="text-center v-center">What's Hot.</h1>
 	      <div class="container">
 	        <div class="row">
@@ -134,23 +139,13 @@
 	  </section>
 
 	  <!-- Section for Around Me -->
-	  <section class="container-fluid" id="around-me">
+	  <section class="container-fluid fill" id="around-me">
 	      <h1 class="text-center v-center">Around Me.</h1>
 	      <div class="container">
 	        <div class="row">
 	            <div class="col-sm-4">
 	              <div class="row">
 	                <div class="col-sm-10 col-sm-offset-3 text-center"><h3>Robust</h3><p>There is other content and snippets of details or features that can be placed here..</p><i class="fa fa-cog fa-5x"></i></div>
-	              </div>
-	            </div>
-	            <div class="col-sm-4 col-sm-offset-3 text-center">
-	              <div class="row">
-	                <div class="col-sm-10 col-sm-offset-1 text-center"><h3>Simple</h3><p>You may also want to create content that compells users to scroll down more..</p><i class="fa fa-user fa-5x"></i></div>
-	              </div>
-	            </div>
-	            <div class="col-sm-4 col-sm-offset-3 text-center">
-	              <div class="row">
-	                <div class="col-sm-10 text-center"><h3>Clean</h3><p>In the first 30 seconds of a user's visit to your site they decide if they're going to stay..</p><i class="fa fa-mobile fa-5x"></i></div>
 	              </div>
 	            </div>
 	        </div><!--/row-->
@@ -160,72 +155,14 @@
 
   <!-- Main Scripts-->
   <script src="/js/jquery.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
   <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/rushour.js"></script>
   
   <!-- Bootstrap 3 has typeahead optionally -->
   <script src="/js/typeahead.min.js"></script>
   <script type="text/javascript">
-    function success(position) {
-      var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      
-      var options = {
-        zoom: 15,
-        center: coords,
-        mapTypeControl: false,
-        navigationControlOptions: {
-          style: google.maps.NavigationControlStyle.SMALL
-        },
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      var map = new google.maps.Map(document.getElementById("map-canvas"), options);
-
-      var marker = new google.maps.Marker({
-          position: coords,
-          map: map,
-          title:"You are here!"
-      });
-    }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success);
-    } else {
-      error('Geo Location is not supported');
-    }
-    /* activate scrollspy menu */
-    $('body').scrollspy({
-      target: '#navbar-collapsible',
-      offset: 50
-    });
-
-    /* smooth scrolling sections */
-    $('a[href*=#]:not([href=#])').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-          if (target.length) {
-            $('html,body').animate({
-              scrollTop: target.offset().top - 50
-            }, 1000);
-            return false;
-          }
-        }
-    });
-
-    // Rotating Card
-    $().ready(function(){
-        $('[rel="tooltip"]').tooltip();
-        
-    });
     
-    function rotateCard(btn){
-        var $card = $(btn).closest('.card-container');
-        console.log($card);
-        if($card.hasClass('hover')){
-            $card.removeClass('hover');
-        } else {
-            $card.addClass('hover');
-        }
-    }
   </script>
   </body>
 </html>
