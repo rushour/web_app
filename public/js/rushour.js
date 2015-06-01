@@ -186,3 +186,8 @@ $(document).ready(function() {
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
 });
+
+// Tooltip 
+$(function() {
+  $( document ).tooltip();
+});

@@ -97,7 +97,7 @@ body {
 }
 
 .navbar-trans li>a:hover,.navbar-trans li>a:focus,.navbar-trans li.active {
-  background-color:#38afef;
+  /*background-color:#38afef;*/
 }
 
 .navbar-trans a{
@@ -178,3 +178,12 @@ footer .nav>li>a:hover {
 /*.section-box h2 a { font-size:5px; }*/
 .separator { padding-right:5px;padding-left:5px; }
 .section-box hr {margin-top: 0;margin-bottom: 5px;border: 0;border-top: 1px solid rgb(199, 199, 199);}
+
+.glyphicon {
+  font-size: 50px;
+}
+
+label {
+  display: inline-block;
+  width: 5em;
+}
