@@ -42,7 +42,7 @@ $(function () {
   $("#inputSearch").autocomplete({
     source: function (request, response) {
       $.ajax({
-        url: "http://10.0.1.2:3000/search",
+        url: "http://localhost:3000/search",
         cache: true,
         type: "GET",
         data: request,  // request is the value of search input
@@ -151,7 +151,7 @@ function fillCardBack(id, fb_id) {
   if (fb_id != "-1")
     finalUrl = 'http://goharirfan.me/services/id/'+id+'?user_facebook_id='+fb_id;
   else
-    finalUrl = 'http://10.0.1.2:3000/restaurants/details/'+id;
+    finalUrl = 'http://localhost:3000/restaurants/details/'+id;
   
   $.ajax({
     type: "GET",
