@@ -107,6 +107,14 @@ router.post('/login', passport.authenticate('local'), function(req, res, next) {
 	res.redirect('/users/home');
 });
 
+/* GET users/login. */
+router.get('/login', function(req, res, next) {
+	var vm = {
+		title: 'Login'
+	};
+  res.render('users/login', vm);
+});
+
 /* GET users/auth/facebook. */
 router.get('/auth/facebook', passport.authenticate('facebook'));
 
