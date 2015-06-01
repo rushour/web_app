@@ -115,6 +115,14 @@ router.get('/login', function(req, res, next) {
   res.render('users/login', vm);
 });
 
+/* GET users/imageUpload. */
+router.get('/imageUpload', function(req, res, next) {
+	var vm = {
+		title: 'Upload Profile Picture'
+	};
+  res.render('users/imageUpload', vm);
+});
+
 /* GET users/auth/facebook. */
 router.get('/auth/facebook', passport.authenticate('facebook'));
 
