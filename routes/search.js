@@ -29,7 +29,8 @@ router.get('/home', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
 		} else {
 			var vm = {
-				title: 'Create search history'
+				title: 'Create search history',
+				user: user
 			};
 		  res.render('search/home', vm);		
 		}
@@ -43,7 +44,8 @@ router.get('/createSearchHistoryRestaurant', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
 		} else {
 			var vm = {
-				title: 'Create restaurant search history'
+				title: 'Create restaurant search history',
+				user: user
 			};
 		  res.render('search/createSearchHistoryRestaurant', vm);
 		}
@@ -87,7 +89,8 @@ router.get('/createSearchHistoryCategory', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
 		} else {
 			var vm = {
-				title: 'Create category search history'
+				title: 'Create category search history',
+				user: user
 			};
 		  res.render('search/createSearchHistoryCategory', vm);
 		}

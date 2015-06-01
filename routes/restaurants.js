@@ -65,7 +65,8 @@ router.get('/create', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
 		} else {
 			var vm = {
-				title: 'Add restaurant'
+				title: 'Add restaurant',
+				user: user
 			};
 		  res.render('restaurants/create', vm);
 		}
@@ -113,7 +114,7 @@ router.post('/imageUpload', function(req, res, next) {
 	});
 	if (!encounteredError) {
 		req.busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
-			if (fieldname == "restaurantID") {
+			if (fieldname == "clientname") {
 				var imageUrl = "/images/restaurantPictures/" + filenameOfImage;
 				restaurantService.addImageToRestaurant(val, imageUrl, function(err, user) {
 					if (err) {
@@ -137,7 +138,8 @@ router.get('/imageUpload', function(req, res, next) {
 			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });
 		} else {
 			var vm = {
-				title: 'Restaurant image upload'
+				title: 'Restaurant image upload',
+				user: user
 			};
 		  res.render('restaurants/imageUpload', vm);
 		}
