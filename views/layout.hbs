@@ -20,8 +20,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/users/login" class="font-inverse">Sign In</a></li>
-            <li><a href="/users/create" class="font-inverse">Join RusHour</a></li>
+          	{{#if user}}
+          		<li><img src="{{user.imageUrl}}" alt="#" class="img-circle" style="max-height: 64px; max-width: 64px; padding-top: 5px;"></li>
+          		<li><a href="#" class="font-inverse">{{user.firstName}}</a></li>
+          		<li><a href="/users/logout" class="font-inverse">Logout</a></li>
+          	{{else}}
+            	<li><a href="/users/login" class="font-inverse">Login</a></li>
+            	<li><a href="/users/create" class="font-inverse">Join RusHour</a></li>
+            {{/if}}
           </ul>
           <!-- <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
