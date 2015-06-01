@@ -1,7 +1,7 @@
 var config = {};
 
 config.network = {
-	IP: 'http://10.0.1.2',
+	IP: 'http://localhost',
 	port: 3000
 };
 
