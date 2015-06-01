@@ -12,6 +12,10 @@
     <script src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
   <body>
+  	<!-- HIDDEN FIELDS FOR USE IN JS -->
+  	{{#if user}}
+  		<p id="userID" value="{{user._id}}">{{user._id}}</p>
+  	{{/if}}
   	<!-- Top Navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -21,7 +25,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
           	{{#if user}}
-          		<li><img src="{{user.imageUrl}}" alt="#" class="img-circle" style="max-height: 64px; max-width: 64px; padding-top: 5px;"></li>
+          		<li><img src="{{user.imageUrl}}" alt="#" class="img-circle" style="max-height: 64px; max-width: 64px; padding-top: 10px;"></li>
           		<li><a href="#" class="font-inverse">{{user.firstName}}</a></li>
           		<li><a href="/users/logout" class="font-inverse">Logout</a></li>
           	{{else}}

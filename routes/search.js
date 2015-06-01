@@ -56,8 +56,27 @@ router.post('/createSearchHistoryRestaurant', function(req, res, next) {
 		if (err) {
 			console.log("This error is from routes/search.js = " + err);
 		  return res.status(500).json({error: err}); // in case of error
+		} else {
+			restaurantService.findRestaurantByID(req.body.restaurantID, function(err, restaurant) {
+				if (err) {
+					console.log("This error is from routes/search.js = " + err);
+				  return res.status(500).json({error: err}); // in case of error
+				} else {
+					var shc = {
+						userID: req.body.userID,
+						category: restaurant.category
+					}
+					searchService.addSearchHistoryCategory(shc, function(err, searchHistoryCategory) {
+						if (err) {
+							console.log("This error is from routes/search.js = " + err);
+						  return res.status(500).json({error: err}); // in case of error	
+						} else {
+							return res.json(searchHistoryRestaurant); // in case of success
+						}
+					});
+				}
+			});
 		}
-		res.json(searchHistoryRestaurant); // in case of success
 	});
 });
 

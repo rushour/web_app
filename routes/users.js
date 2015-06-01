@@ -59,7 +59,9 @@ router.get('/home', ensureAuthenticated, function(req, res, next) {
 	 		if (_user.isAdmin) {
 	 			return res.render('users/admin', {user: _user});
 	 		}
-	 		_user.imageUrl = config.network.IP + ':' + config.network.port + _user.imageUrl;
+	 		if (_user.oauthProvider != "facebook") {
+		 		_user.imageUrl = config.network.IP + ':' + config.network.port + _user.imageUrl;
+		 	}
 			res.render('users/home', {user: _user});
 	 	}
 	});
