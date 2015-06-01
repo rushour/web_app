@@ -42,7 +42,7 @@ $(function () {
   $("#inputSearch").autocomplete({
     source: function (request, response) {
       $.ajax({
-        url: "http://localhost:3000/search",
+        url: "http://rushour.pk:3000/search",
         cache: true,
         type: "GET",
         data: request,  // request is the value of search input
@@ -148,7 +148,7 @@ $('a[href*=#]:not(a[name=whatshot-tabs])').click(function() {
 function fillCardBack(id, _userID) {
   console.log("...");
   var finalUrl;
-  finalUrl = 'http://localhost:3000/restaurants/details/'+id;
+  finalUrl = 'http://rushour.pk:3000/restaurants/details/'+id;
   
   $.ajax({
     type: "GET",
@@ -174,7 +174,7 @@ function fillCardBack(id, _userID) {
 	  $.ajax({
 	    type: "POST",
 	    cache: true,
-	    url: 'http://localhost:3000/search/createSearchHistoryRestaurant',
+	    url: 'http://rushour.pk:3000/search/createSearchHistoryRestaurant',
 	    dataType: 'json',
 	    data: {userID: _userID, restaurantID: id},
 	    

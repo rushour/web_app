@@ -1,12 +1,12 @@
 var config = {};
 
 config.network = {
-	IP: 'http://rushour.pk',
+	IP: 'http://localhost',
 	port: 3000
 };
 
 config.mongo = {
-	IP: 'rushour.pk',
+	IP: 'localhost',
 	port: 27017
 };
 
