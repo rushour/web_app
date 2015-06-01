@@ -50,3 +50,30 @@ exports.addImageToUser = function(id, _imageUrl, next) {
 		next(null, "done");
 	});
 };
+
+exports.ensureAdmin = function(userID, next) {
+	if (userID == null) {
+		console.log("null user");
+		return next("null user", null);
+	}
+	console.log(userID);
+	User.findOne({_id: userID}, function(err, user) {
+		if (err) {
+			console.log("This error is from services/user-service.js = " + err);
+			return next("user not found", null);
+		} else {
+			console.log(user);
+			console.log(user.isAdmin);
+			if (user.isAdmin) {
+				console.log("isadmin");
+			} else {
+				console.log("isadmin not");
+			}
+			if (user.isAdmin) {
+				return next(null, user);
+			}
+			console.log("not admin");
+			return next("not admin", null);
+		}
+	});
+};

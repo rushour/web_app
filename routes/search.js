@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var searchService = require('../services/search-service');
 var restaurantService = require('../services/restaurant-service');
+var userService = require('../services/user-service');
 
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -23,18 +24,30 @@ router.get('/', function(req, res, next) {
 
 /* GET search/home. */
 router.get('/home', function(req, res, next) {
-	var vm = {
-		title: 'Create search history'
-	};
-  res.render('search/home', vm);
+	userService.ensureAdmin(req.session.passport.user, function(err, user) {
+		if (err) {
+			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
+		} else {
+			var vm = {
+				title: 'Create search history'
+			};
+		  res.render('search/home', vm);		
+		}
+	});
 });
 
 /* GET search/createSearchHistoryRestaurant. */
 router.get('/createSearchHistoryRestaurant', function(req, res, next) {
-	var vm = {
-		title: 'Create restaurant search history'
-	};
-  res.render('search/createSearchHistoryRestaurant', vm);
+	userService.ensureAdmin(req.session.passport.user, function(err, user) {
+		if (err) {
+			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
+		} else {
+			var vm = {
+				title: 'Create restaurant search history'
+			};
+		  res.render('search/createSearchHistoryRestaurant', vm);
+		}
+	});
 });
 
 /* POST search/createSearchHistoryRestaurant. */
@@ -50,10 +63,16 @@ router.post('/createSearchHistoryRestaurant', function(req, res, next) {
 
 /* GET search/api/createSearchHistoryCategory. */
 router.get('/createSearchHistoryCategory', function(req, res, next) {
-	var vm = {
-		title: 'Create category search history'
-	};
-  res.render('search/createSearchHistoryCategory', vm);
+	userService.ensureAdmin(req.session.passport.user, function(err, user) {
+		if (err) {
+			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
+		} else {
+			var vm = {
+				title: 'Create category search history'
+			};
+		  res.render('search/createSearchHistoryCategory', vm);
+		}
+	});
 });
 
 /* POST search/createSearchHistoryCategory. */

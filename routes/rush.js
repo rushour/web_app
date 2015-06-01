@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var rushService = require('../services/rush-service');
+var userService = require('../services/user-service');
 
 /* GET rush/history/:restaurantID. */
 router.get('/history/:restaurantID', function(req, res, next) {
@@ -15,10 +16,16 @@ router.get('/history/:restaurantID', function(req, res, next) {
 
 /* GET rush/create. */
 router.get('/create', function(req, res, next) {
-	var vm = {
-		title: 'Add rush for restaurant'
-	};
-  res.render('rush/create', vm);
+	userService.ensureAdmin(req.session.passport.user, function(err, user) {
+		if (err) {
+			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
+		} else {
+			var vm = {
+				title: 'Add rush for restaurant'
+			};
+		  res.render('rush/create', vm);
+		}
+	});
 });
 
 /* POST rush/create. */

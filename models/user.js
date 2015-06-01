@@ -33,6 +33,7 @@ var userSchema = new Schema ({
 	oauthID: {type:Number},
 	oauthLink: {type:String},
 	gender: {type:String},
+	isAdmin: {type:Boolean, default: false},
 	created: {type: Date, default: Date.now}
 });
 
