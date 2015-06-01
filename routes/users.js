@@ -52,11 +52,12 @@ router.post('/create', function(req, res, next) {
 
 /* GET users/home. */
 router.get('/home', ensureAuthenticated, function(req, res, next) {
-	userService.findUserByID(req.session.passport.user, function(err, user) {
+	userService.findUserByID(req.session.passport.user, function(err, _user) {
 		if (err) {
 			console.log(err);
 	 	} else {
-			res.render('users/home', { user: user});
+	 		_user.imageUrl = config.network.IP + ':' + config.network.port + _user.imageUrl;
+			res.render('users/home', {user: _user});
 	 	}
 	});
 });
@@ -71,9 +72,8 @@ router.post('/imageUpload', function(req, res, next) {
 	req.busboy.on('file', function (fieldname, file, filename) {
 		console.log("Uploading: " + filename);
 		filenameOfImage = filename;
-		//Path where image will be uploaded
 		try {
-			fstream = fs.createWriteStream(config.imageUploadDirectory + filename);
+			fstream = fs.createWriteStream(config.imageUploadDirectoryUsers + filename);
 			file.pipe(fstream);
 			fstream.on('close', function () {
 				console.log("Upload finished of: " + filename);

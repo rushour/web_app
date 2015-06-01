@@ -59,3 +59,17 @@ exports.regexSearch = function(searchTerm, next) {
 		next(err, result);
 	});
 };
+
+exports.addImageToRestaurant = function(id, _imageUrl, next) {
+	var conditions = {_id: id};
+	var update = {$set: {imageUrl: _imageUrl}};
+	console.log(_imageUrl);
+	console.log(id);
+	var options = {upsert: true};
+	Restaurant.update(conditions, update, options, function(err) {
+		if (err) {
+			return next(err, null);
+		}
+		next(null, "done");
+	});
+};
