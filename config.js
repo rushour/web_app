@@ -1,7 +1,7 @@
 var config = {};
 
 config.network = {
-	IP: 'http://rushour.pk',
+	IP: 'http://localhost',
 	port: 3000
 };
 
