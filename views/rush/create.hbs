@@ -1,0 +1,16 @@
+<div class="widget">
+  <form name="create-rushHistory-form" id="create-rushHistory-form" method="post">
+    <div class="form-group">
+      <label for="restaurantID">restaurantID</label>
+      <input type="text" id="restaurantID" name="restaurantID" required value="{{input.restaurantID}}" />
+    </div>
+    <div class="form-group">
+      <label for="rush">Rush Percentage</label>
+      <input type="text" id="rush" name="rush" required value="{{input.rush}}" />
+    </div>
+    <div class="form-submit">
+      <input type="submit" value="Create my account" />
+    </div>
+    <span style="color:red;">{{error}}</span>
+  </form>
+</div>

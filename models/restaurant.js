@@ -12,7 +12,7 @@ var restaurantSchema = new Schema ({
 	longitude: {type:Number},
 	currentRush: {type:Number, default: 0, min:[0, 'Not a valid percentage (minimum 0)'], max:[100, 'Not a valid percentage (maximum 100)']},
 	imageUrl: {type:String},
-	created: {type: Date, default: Date.now}
+	created: {type:Date, default: Date.now}
 });
 
 restaurantSchema.path('clientname').validate(function(value, next) {

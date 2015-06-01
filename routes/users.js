@@ -2,6 +2,15 @@ var express = require('express');
 var router = express.Router();
 var userService = require('../services/user-service');
 var passport = require('passport');
+var config = require('../config');
+
+// == start ==
+// for file uploading
+var busboy = require('connect-busboy');
+var path = require('path'); //used for file path
+var fs = require('fs-extra'); 
+var http = require('http'), inspect = require('util').inspect;
+// == end ==
 
 //TODO add bcrypt to passwords
 //TODO edit users
@@ -23,6 +32,7 @@ router.get('/create', function(req, res, next) {
 
 /* POST users/create. */
 router.post('/create', function(req, res, next) {
+	console.log(req.body);
 	userService.addUser(req.body, function(err, userSaved) {
 		if (err) {
 			console.log("This error is from routes/users.js = " + err);
@@ -42,13 +52,54 @@ router.post('/create', function(req, res, next) {
 
 /* GET users/home. */
 router.get('/home', ensureAuthenticated, function(req, res, next) {
-	userService.findUserByID(req.session.passport.user, function(err, user) {
+	userService.findUserByID(req.session.passport.user, function(err, _user) {
 		if (err) {
 			console.log(err);
 	 	} else {
-			res.render('users/home', { user: user});
+	 		_user.imageUrl = config.network.IP + ':' + config.network.port + _user.imageUrl;
+			res.render('users/home', {user: _user});
 	 	}
 	});
+});
+
+/* POST users/imageUpload. */
+router.post('/imageUpload', function(req, res, next) {
+	// TODO limit file upload size
+	var fstream;
+	var filenameOfImage;
+	var encounteredError = false;
+	req.pipe(req.busboy);
+	req.busboy.on('file', function (fieldname, file, filename) {
+		console.log("Uploading: " + filename);
+		filenameOfImage = filename;
+		try {
+			fstream = fs.createWriteStream(config.imageUploadDirectoryUsers + filename);
+			file.pipe(fstream);
+			fstream.on('close', function () {
+				console.log("Upload finished of: " + filename);
+			});	
+		} catch (err) {
+			console.log("This error is from routes/users.js = " + err);
+			encounteredError = true;
+		}
+	});
+	if (!encounteredError) {
+		req.busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
+			if (fieldname == "userID") {
+				var imageUrl = "/images/profilePictures/" + filenameOfImage;
+				userService.addImageToUser(val, imageUrl, function(err, user) {
+					if (err) {
+						console.log("This error is from routes/users.js = " + err);
+						return res.redirect('/users/home');
+					} else {
+						res.redirect('/users/home');
+					}
+				});
+			}
+		});
+	} else  {
+		res.redirect('/users/home');
+	}
 });
 
 /* POST users/login. */

@@ -36,3 +36,17 @@ exports.findUserByOauthID = function(providerID, next) {
 		next(err, user);
 	});
 };
+
+exports.addImageToUser = function(id, _imageUrl, next) {
+	var conditions = {_id: id};
+	var update = {$set: {imageUrl: _imageUrl}};
+	console.log(_imageUrl);
+	console.log(id);
+	var options = {upsert: true};
+	User.update(conditions, update, options, function(err) {
+		if (err) {
+			return next(err, null);
+		}
+		next(null, "done");
+	});
+};

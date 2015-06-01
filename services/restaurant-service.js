@@ -46,10 +46,30 @@ exports.deleteRestaurantByClientname = function(_clientname, next) {
 	});
 };
 
+exports.deleteRestaurantByID = function(id, next) {
+	Restaurant.remove({_id: id}, function(err, restaurant) {
+		next(err, restaurant);
+	});
+};
+
 exports.regexSearch = function(searchTerm, next) {
 	var regex = new RegExp(searchTerm, 'i');
-	var query = Restaurant.find({name: regex}).sort({"updated_at":-1}).limit(20);
+	var query = Restaurant.find({name: regex}).sort({"name":1}).limit(20);
 	query.exec(function(err, result) {
 		next(err, result);
+	});
+};
+
+exports.addImageToRestaurant = function(id, _imageUrl, next) {
+	var conditions = {_id: id};
+	var update = {$set: {imageUrl: _imageUrl}};
+	console.log(_imageUrl);
+	console.log(id);
+	var options = {upsert: true};
+	Restaurant.update(conditions, update, options, function(err) {
+		if (err) {
+			return next(err, null);
+		}
+		next(null, "done");
 	});
 };
