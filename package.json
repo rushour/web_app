@@ -21,6 +21,7 @@
     "lyric-node": "^0.1.0",
     "connect-busboy": "0.0.2",
     "path": "^0.11.14",
-    "fs-extra": "^0.18.4"
+    "fs-extra": "^0.18.4",
+    "node-mongo-seeds": "^2.2.4"
   }
 }

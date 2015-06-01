@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var restaurantService = require('../services/restaurant-service');
+var userService = require('../services/user-service');
 var config = require('../config');
+
+// TODO ensure admin on relevant POST/DELETE/UPDATE requests too and test it
 
 // == start ==
 // for file uploading
@@ -57,6 +60,9 @@ router.delete('/delete/:restaurantID', function(req, res, next) {
 
 /* GET restaurants/create. */
 router.get('/create', function(req, res, next) {
+	if (!userService.ensureAdmin(req.session.passport.user)) {
+		return res.render('error', { error: 404, message: "You don't have the permission to access this page." });
+	}
 	var vm = {
 		title: 'Add restaurant'
 	};
@@ -123,6 +129,9 @@ router.post('/imageUpload', function(req, res, next) {
 
 /* GET /restaurants/imageUpload. */
 router.get('/imageUpload', function(req, res, next) {
+	if (!userService.ensureAdmin(req.session.passport.user)) {
+		return res.render('error', { error: 404, message: "You don't have the permission to access this page." });
+	}
 	var vm = {
 		title: 'Restaurant image upload'
 	};

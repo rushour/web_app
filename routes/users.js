@@ -56,6 +56,9 @@ router.get('/home', ensureAuthenticated, function(req, res, next) {
 		if (err) {
 			console.log(err);
 	 	} else {
+	 		if (_user.isAdmin) {
+	 			return res.render('users/admin', {user: _user});
+	 		}
 	 		_user.imageUrl = config.network.IP + ':' + config.network.port + _user.imageUrl;
 			res.render('users/home', {user: _user});
 	 	}
@@ -145,7 +148,7 @@ router.get('/logout', function(req, res){
 
 function ensureAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) { return next(); }
-	res.redirect('/')
+	res.redirect('/');
 }
 
 module.exports = router;

@@ -1,0 +1,29 @@
+[
+	{
+		"firstName" : "Gohar",
+		"lastName" : "Irfan",
+		"email" : "gohar@rushour.pk",
+		"password" : "00",
+		"__v" : 0,
+		"imageUrl" : "/images/profilePictures/gohar.png",
+		"isAdmin" : true
+	},
+	{
+		"firstName" : "Qandeel",
+		"lastName" : "Tariq",
+		"email" : "qandeel@rushour.pk",
+		"password" : "00",
+		"__v" : 0,
+		"imageUrl" : "/images/profilePictures/qandeel.png",
+		"isAdmin" : true
+	},
+	{
+		"firstName" : "Mohammad",
+		"lastName" : "Laghari",
+		"email" : "laghari@rushour.pk",
+		"password" : "00",
+		"__v" : 0,
+		"imageUrl" : "/images/profilePictures/laghari.png",
+		"isAdmin" : true
+	}
+]

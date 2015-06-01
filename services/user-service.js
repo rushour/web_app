@@ -50,3 +50,11 @@ exports.addImageToUser = function(id, _imageUrl, next) {
 		next(null, "done");
 	});
 };
+
+exports.ensureAdmin = function(user) {
+	if (!user) {
+		return false;
+	}
+	if (user.isAdmin) { return true; }
+	return false;
+};
