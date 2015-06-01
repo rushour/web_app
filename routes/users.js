@@ -62,7 +62,11 @@ router.get('/home', ensureAuthenticated, function(req, res, next) {
 	 		if (_user.oauthProvider != "facebook") {
 		 		_user.imageUrl = config.network.IP + ':' + config.network.port + _user.imageUrl;
 		 	}
-			res.render('users/home', {user: _user});
+		 	var vm = {
+		 		user: _user,
+		 		title: 'RusHour | Home'
+		 	}
+			res.render('users/home', vm);
 	 	}
 	});
 });
