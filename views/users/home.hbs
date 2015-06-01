@@ -2,7 +2,7 @@
 <section class="container-fluid fill" id="search">
 <br><br><br><br>
   <div class="row">
-  	<div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-3">
+  	<div class="col-sm-8 col-sm-offset-2 col-md-9 col-md-offset-2">
 	    <div class="card-container manual-flip">
         <div class="card">
             <div class="front">
@@ -58,28 +58,133 @@
 <!-- Section for What's Hot -->
 <section class="container-fluid fill" id="whats-hot">
     <h1 class="text-center v-center">What's Hot.</h1>
-    <div class="container">
-      <div class="row">
-      <div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-3" data-effect="slide-left">
-        <div class="tabbable tabs-right">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#dealsoftheday" data-toggle="tab">Deals of the day</a></li>
-            <li><a href="#favorites" data-toggle="tab">Your Favorites</a></li>
-            <li><a href="#recommendations" data-toggle="tab">Our Favorites</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="dealsoftheday">
-              <p>I'm in Section dealsoftheday.</p>
+    <div class="col-lg-offset-2 col-lg-3 offset-sm-3 col-sm-5">
+      <h3>Deals of the day</h3>
+      <div id="myCarouselVOne" class="carousel thumbnail fade">
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="item active">
+            
+              <img src="assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
+              <div class="carousel-caption">
+                <h4>Title 1</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+                <a href="#" class="btn btn-info btn-sm">Read more</a>
+              </div>
+            
+          </div>
+          <!-- Slide 2 -->
+          <div class="item">
+            <img src="assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Title 2</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+              <a href="#" class="btn btn-danger btn-sm">Read more</a>
             </div>
-            <div class="tab-pane" id="favorites">
-              <p>Howdy, I'm in Section favorites.</p>
-            </div>
-            <div class="tab-pane" id="recommendations">
-              <p>Howdy, I'm in Section recommendations.</p>
+          </div>
+          <!-- Slide 3 -->
+          <div class="item">
+            <img src="assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Title 3</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+              <a href="#" class="btn btn-warning btn-sm">Read more</a>
             </div>
           </div>
         </div>
-      </div>
+        <a class="left carousel-control" href="#myCarouselVOne" data-slide="prev" name="whatshot-tabs">
+          <span class="fa fa-chevron-right icon-prev"></span>  
+        </a>
+        <a class="right carousel-control" href="#myCarouselVOne" data-slide="next" name="whatshot-tabs">
+        <span class="fa fa-chevron-right icon-next"></span>  
+        </a>
+      </div>        
+    </div>
+
+    <div class="col-lg-3 offset-sm-1 col-sm-5">
+      <h3>Your Favorites</h3>
+      <div id="myCarouselVTwo" class="carousel thumbnail fade">
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="item active">
+            
+              <img src="assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
+              <div class="carousel-caption">
+                <h4>Title 1</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+                <a href="#" class="btn btn-info btn-sm">Read more</a>
+              </div>
+            
+          </div>
+          <!-- Slide 2 -->
+          <div class="item">
+            <img src="assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Title 2</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+              <a href="#" class="btn btn-danger btn-sm">Read more</a>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="item">
+            <img src="assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Title 3</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+              <a href="#" class="btn btn-warning btn-sm">Read more</a>
+            </div>
+          </div>
+        </div>
+        <a class="left carousel-control" href="#myCarouselVTwo" data-slide="prev" name="whatshot-tabs">
+          <span class="fa fa-chevron-right icon-prev"></span>  
+        </a>
+        <a class="right carousel-control" href="#myCarouselVTwo" data-slide="next" name="whatshot-tabs">
+        <span class="fa fa-chevron-right icon-next"></span>  
+        </a>
+      </div>        
+    </div>
+
+    <div class="col-lg-3 offset-sm-1 col-sm-5">
+      <h3>We think you'll love...</h3>
+      <div id="myCarouselVThree" class="carousel thumbnail fade">
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="item active">
+            
+              <img src="assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
+              <div class="carousel-caption">
+                <h4>Title 1</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+                <a href="#" class="btn btn-info btn-sm">Read more</a>
+              </div>
+            
+          </div>
+          <!-- Slide 2 -->
+          <div class="item">
+            <img src="assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Title 2</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+              <a href="#" class="btn btn-danger btn-sm">Read more</a>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="item">
+            <img src="assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Title 3</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+              <a href="#" class="btn btn-warning btn-sm">Read more</a>
+            </div>
+          </div>
+        </div>
+        <a href="#myCarouselVThree" data-slide="prev" class="left carousel-control" name="whatshot-tabs">
+          <span class="fa fa-chevron-right icon-prev"></span>  
+        </a>
+        <a href="#myCarouselVThree" data-slide="next" class="right carousel-control" name="whatshot-tabs">
+        <span class="fa fa-chevron-right icon-next"></span>  
+        </a>
+      </div>        
     </div>
     <div class="row"><br></div>
   </div><!--/container-->

@@ -131,7 +131,7 @@ $('body').scrollspy({
 });
 
 /* smooth scrolling sections */
-$('a[href*=#]:not([href=#])').click(function() {
+$('a[href*=#]:not(a[name=whatshot-tabs])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
       var target = $(this.hash);
       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
@@ -173,3 +173,21 @@ function fillCardBack(id, fb_id) {
     } 
   }); 
 }
+
+
+// What's hot page tabs
+$(document).ready(function() {
+    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+    });
+});
+
+// Tooltip 
+$(function() {
+  $( document ).tooltip();
+});
