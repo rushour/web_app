@@ -60,13 +60,16 @@ router.delete('/delete/:restaurantID', function(req, res, next) {
 
 /* GET restaurants/create. */
 router.get('/create', function(req, res, next) {
-	if (!userService.ensureAdmin(req.session.passport.user)) {
-		return res.render('error', { error: 404, message: "You don't have the permission to access this page." });
-	}
-	var vm = {
-		title: 'Add restaurant'
-	};
-  res.render('restaurants/create', vm);
+	userService.ensureAdmin(req.session.passport.user, function(err, user) {
+		if (err) {
+			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });	
+		} else {
+			var vm = {
+				title: 'Add restaurant'
+			};
+		  res.render('restaurants/create', vm);
+		}
+	});
 });
 
 /* POST restaurants/create. */
@@ -129,13 +132,16 @@ router.post('/imageUpload', function(req, res, next) {
 
 /* GET /restaurants/imageUpload. */
 router.get('/imageUpload', function(req, res, next) {
-	if (!userService.ensureAdmin(req.session.passport.user)) {
-		return res.render('error', { error: 404, message: "You don't have the permission to access this page." });
-	}
-	var vm = {
-		title: 'Restaurant image upload'
-	};
-  res.render('restaurants/imageUpload', vm);
+	userService.ensureAdmin(req.session.passport.user, function(err, user) {
+		if (err) {
+			return res.render('error', { error: 404, message: "You don't have the permission to access this page." });
+		} else {
+			var vm = {
+				title: 'Restaurant image upload'
+			};
+		  res.render('restaurants/imageUpload', vm);
+		}
+	});
 });
 
 module.exports = router;
