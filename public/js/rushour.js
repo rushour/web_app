@@ -231,3 +231,47 @@ $('#myCarousel').on('slid', function (e) {
 $('[data-slide-number=0]').load($('[data-slide-number=0]').data('url'),function(result){    
 	$('#myCarousel').carousel(0);
 });
+
+
+function fillCard(id, _userID) {
+  var finalUrl;
+  finalUrl = 'http://localhost:3000/restaurants/details/'+id;
+  
+  $.ajax({
+    type: "GET",
+    cache: true,
+    url: finalUrl,
+    dataType: 'json',
+    
+    success: function(data){
+      document.getElementById("restaurantImage").src = data["imageUrl"];
+      document.getElementById("restaurantName").innerHTML = data["name"];
+      document.getElementById("restaurantAddress").innerHTML = data["address"];
+      document.getElementById("restaurantCity").innerHTML = data["city"];
+      document.getElementById("restaurantCountry").innerHTML = data["country"];
+      // makeChart(id);
+      console.log(data);
+    }, 
+    error: function(e) { 
+      console.log(e);
+    } 
+  });
+
+  if (_userID != "-1") {
+	  $.ajax({
+	    type: "POST",
+	    cache: true,
+	    url: 'http://localhost:3000/search/createSearchHistoryRestaurant',
+	    dataType: 'json',
+	    data: {userID: _userID, restaurantID: id},
+	    
+	    success: function(data){
+	    	console.log("saved user search");
+	      console.log(data);
+	    }, 
+	    error: function(e) { 
+	      console.log(e);
+	    } 
+	  });
+	}
+}
