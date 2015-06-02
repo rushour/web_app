@@ -115,7 +115,7 @@ router.post('/imageUpload', function(req, res, next) {
 	if (!encounteredError) {
 		req.busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
 			if (fieldname == "clientname") {
-				var imageUrl = "/images/restaurantPictures/" + filenameOfImage;
+				var imageUrl = "/images/adPictures/" + filenameOfImage;
 				restaurantService.addImageToRestaurant(val, imageUrl, function(err, user) {
 					if (err) {
 						console.log("This error is from routes/restaurants.js = " + err);

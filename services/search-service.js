@@ -119,14 +119,16 @@ exports.addSearchHistoryCategory = function(_searchHistoryCategory, next) {
 	});
 };
 
+// TODO sort by num views
 exports.getUserSearchedRestaurants = function(_userID, next) {
-	SearchHistoryRestaurant.find({userID: _userID}, 'restaurantID', function(err, searchHistoryRestaurant) {
+	SearchHistoryRestaurant.find({userID: _userID}, 'restaurantID views', function(err, searchHistoryRestaurant) {
 		next(err, searchHistoryRestaurant);
 	});
 };
 
+// TODO sort by num views
 exports.getUserSearchedCategories = function(_userID, next) {
-	SearchHistoryCategory.find({userID: _userID}, 'category', function(err, searchHistoryCategory) {
+	SearchHistoryCategory.find({userID: _userID}, 'category views', function(err, searchHistoryCategory) {
 		next(err, searchHistoryCategory);
 	});
 };
