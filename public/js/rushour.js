@@ -42,7 +42,7 @@ $(function () {
   $("#inputSearch").autocomplete({
     source: function (request, response) {
       $.ajax({
-        url: "http://rushour.pk:3000/search",
+        url: "http://localhost:3000/search",
         cache: true,
         type: "GET",
         data: request,  // request is the value of search input
@@ -148,7 +148,7 @@ $('a[href*=#]:not(a[name=whatshot-tabs])').click(function() {
 function fillCardBack(id, _userID) {
   console.log("...");
   var finalUrl;
-  finalUrl = 'http://rushour.pk:3000/restaurants/details/'+id;
+  finalUrl = 'http://localhost:3000/restaurants/details/'+id;
   
   $.ajax({
     type: "GET",
@@ -174,7 +174,7 @@ function fillCardBack(id, _userID) {
 	  $.ajax({
 	    type: "POST",
 	    cache: true,
-	    url: 'http://rushour.pk:3000/search/createSearchHistoryRestaurant',
+	    url: 'http://localhost:3000/search/createSearchHistoryRestaurant',
 	    dataType: 'json',
 	    data: {userID: _userID, restaurantID: id},
 	    
@@ -205,4 +205,29 @@ $(document).ready(function() {
 // Tooltip 
 $(function() {
   $( document ).tooltip();
+});
+
+// Browse page carousel
+$('#myCarousel').carousel({
+  interval:false // remove interval for manual sliding
+});
+
+// when the carousel slides, load the ajax content
+$('#myCarousel').on('slid', function (e) {
+  
+	// get index of currently active item
+	var idx = $('#myCarousel .item.active').index();
+	var url = $('.item.active').data('url');
+
+	// ajax load from data-url
+  	$('.item').html("wait...");
+	$('.item').load(url,function(result){
+	    $('#myCarousel').carousel(idx);  
+	});
+  
+});
+
+// load first slide
+$('[data-slide-number=0]').load($('[data-slide-number=0]').data('url'),function(result){    
+	$('#myCarousel').carousel(0);
 });
