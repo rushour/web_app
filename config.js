@@ -21,5 +21,6 @@ config.facebook = {
 
 config.imageUploadDirectoryUsers = __dirname + '/public/images/profilePictures/';
 config.imageUploadDirectoryRestaurants = __dirname + '/public/images/restaurantPictures/';
+config.imageUploadDirectoryAds = __dirname + '/public/images/adPictures/';
 
 module.exports = config;
