@@ -10,8 +10,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://maps.googleapis.com/maps/api/js"></script>
+    
   </head>
-  <body>
+  <body onload="fillCard()">
   	<!-- HIDDEN FIELDS FOR USE IN JS -->
   	{{#if user}}
   		<p hidden id="userID" value="{{user._id}}">{{user._id}}</p>
@@ -57,13 +58,9 @@
   <!-- Main Scripts-->
   <script src="/js/jquery.js"></script>
   <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/rushour.js"></script>
-  
+  <script src="/js/bootstrap.min.js"></script>  
   <!-- Bootstrap 3 has typeahead optionally -->
   <script src="/js/typeahead.min.js"></script>
-  <script type="text/javascript">
-    
-  </script>
+  <script src="/js/rushour.js"></script>
   </body>
 </html>

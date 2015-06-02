@@ -11,6 +11,7 @@ exports.addRestaurant = function(_restaurant, next) {
 		latitude: _restaurant.latitude,
 		longitude: _restaurant.longitude,
 		currentRush: _restaurant.currentRush,
+		category:_restaurant.category,
 		imageUrl: _restaurant.imageUrl
 	});
 

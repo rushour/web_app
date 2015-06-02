@@ -1,3 +1,7 @@
+$(window).bind("load", function() {
+  fillCard();
+});
+
 $(".ui-helper-hidden-accessibl").click(function(e) {
 		console.log("Here");
     if(e.target.className !== "ui-helper-hidden-accessible")
@@ -233,9 +237,9 @@ $('[data-slide-number=0]').load($('[data-slide-number=0]').data('url'),function(
 });
 
 
-function fillCard(id, _userID) {
+function fillCard() {
   var finalUrl;
-  finalUrl = 'http://localhost:3000/restaurants/details/'+id;
+  finalUrl = 'http://localhost:3000/restaurants';
   
   $.ajax({
     type: "GET",
@@ -243,12 +247,18 @@ function fillCard(id, _userID) {
     url: finalUrl,
     dataType: 'json',
     
-    success: function(data){
-      document.getElementById("restaurantImage").src = data["imageUrl"];
-      document.getElementById("restaurantName").innerHTML = data["name"];
-      document.getElementById("restaurantAddress").innerHTML = data["address"];
-      document.getElementById("restaurantCity").innerHTML = data["city"];
-      document.getElementById("restaurantCountry").innerHTML = data["country"];
+
+    success: function(data) {
+      console.log(data);
+      for (var i = 0 ; i < data.length ; i++) {
+        $("#img"+i).attr("src",data[i]["imageUrl"]);
+        $("#name"+i).html(data[i]["name"]);
+        $("#nameback"+i).html(data[i]["name"]);
+        $("#address"+i).html(data[i]["address"]);
+        $("#category"+i).html(data[i]["category"]);
+        $("#citycountry"+i).html(data[i]["city"] + " , " + data[i]["country"]);
+        $("#currentRush"+i).html(data[i]["currentRush"]);
+      }
       // makeChart(id);
       console.log(data);
     }, 
@@ -256,22 +266,5 @@ function fillCard(id, _userID) {
       console.log(e);
     } 
   });
-
-  if (_userID != "-1") {
-	  $.ajax({
-	    type: "POST",
-	    cache: true,
-	    url: 'http://localhost:3000/search/createSearchHistoryRestaurant',
-	    dataType: 'json',
-	    data: {userID: _userID, restaurantID: id},
-	    
-	    success: function(data){
-	    	console.log("saved user search");
-	      console.log(data);
-	    }, 
-	    error: function(e) { 
-	      console.log(e);
-	    } 
-	  });
-	}
+  return;
 }
