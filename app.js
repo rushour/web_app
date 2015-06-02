@@ -16,6 +16,7 @@ var users = require('./routes/users');
 var restaurants = require('./routes/restaurants');
 var search = require('./routes/search');
 var rush = require('./routes/rush');
+var ads = require('./routes/ads');
 
 var passportConfig = require('./auth/passport-config');
 passportConfig();
@@ -53,6 +54,7 @@ app.use('/users', users);
 app.use('/restaurants', restaurants);
 app.use('/search', search);
 app.use('/rush', rush);
+app.use('/ads', ads);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

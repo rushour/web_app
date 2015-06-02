@@ -1,0 +1,9 @@
+[
+	{ 
+		"category" : "fastfood", 
+		"title" : "$1 Burgers!", 
+		"clientname" : "foodplace", 
+		"__v" : 0, 
+		"imageUrl" : "/images/adPictures/foodplace_ad1.jpg" 
+	}
+]
