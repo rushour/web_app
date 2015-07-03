@@ -1,10 +1,164 @@
+<style>
+ body {
+     background: #fff;
+     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+     font-size: 14px;
+     /*color:#000;*/
+     margin: 0;
+     padding: 0;
+ }
+ .swiper-container {
+     width: 100%;
+     padding-top: 50px;
+     padding-bottom: 50px;
+ }
+ .swiper-slide {
+     background-position: center;
+     background-size: cover;
+     width: 300px;
+     height: 50%;
+ }
+ </style>
+
 <!-- Section for Browse -->
 <section class="container-fluid fill" id="browse">
 <br><br><br><br>
   <div class="row">
   	<div class="col-sm-8 col-sm-offset-2 col-md-9 col-md-offset-2">
+        <!-- Slider main container -->
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <!-- <div class="col-md-4 col-sm-6"> -->
+                  <div class="card-container manual-flip">
+                    <div class="card">
+                      <div class="front cardOne">
+                        <div class="cover">
+                            <img id="img1" src=""/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 id="name1" class="name">Restaurant Name</h3>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-simple" onclick="rotateCard(this)">
+                                    <i class="fa fa-mail-forward"></i> More Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back cardOne">
+                        <div class="header">
+                            <h3 id="nameback1" class="name">Restaurant Name</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <p id="category1" class="profession"></p>
+                                <h5 id="address1"><i class="fa fa-map-marker fa-fw text-muted"></i> Address</h5>
+                                <h5 id="citycountry1"><i class="fa fa-building-o fa-fw text-muted"></i> City, Country</h5>
+                                <h5 id="currentRush1"><i class="fa fa-envelope-o fa-fw text-muted"></i> Rush</h5>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="backToSearch(this)">
+                                <i class="fa fa-reply"></i> Back
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- </div>         -->
+              </div>
+              <div class="swiper-slide">
+                <!-- <div class="col-md-4 col-sm-6"> -->
+                  <div class="card-container manual-flip">
+                    <div class="card">
+                      <div class="front cardOne">
+                        <div class="cover">
+                            <img id="img2" src=""/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 id="name2" class="name">Restaurant Name</h3>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-simple" onclick="rotateCard(this)">
+                                    <i class="fa fa-mail-forward"></i> More Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back cardOne">
+                        <div class="header">
+                            <h3 id="nameback2" class="name">Restaurant Name</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <p id="category2" class="profession"></p>
+                                <h5 id="address2"><i class="fa fa-map-marker fa-fw text-muted"></i> Address</h5>
+                                <h5 id="citycountry2"><i class="fa fa-building-o fa-fw text-muted"></i> City, Country</h5>
+                                <h5 id="currentRush2"><i class="fa fa-envelope-o fa-fw text-muted"></i> Rush</h5>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="backToSearch(this)">
+                                <i class="fa fa-reply"></i> Back
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- </div>   -->
+              </div>
+              <div class="swiper-slide">
+                <!-- <div class="col-md-4 col-sm-6"> -->
+                  <div class="card-container manual-flip">
+                    <div class="card">
+                      <div class="front cardOne">
+                        <div class="cover">
+                            <img id="img3" src=""/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 id="name3" class="name">Restaurant Name</h3>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-simple" onclick="rotateCard(this)">
+                                    <i class="fa fa-mail-forward"></i> More Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back cardOne">
+                        <div class="header">
+                            <h3 id="nameback3" class="name">Restaurant Name</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <p id="category3" class="profession"></p>
+                                <h5 id="address3"><i class="fa fa-map-marker fa-fw text-muted"></i> Address</h5>
+                                <h5 id="citycountry3"><i class="fa fa-building-o fa-fw text-muted"></i> City, Country</h5>
+                                <h5 id="currentRush3"><i class="fa fa-envelope-o fa-fw text-muted"></i> Rush</h5>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="backToSearch(this)">
+                                <i class="fa fa-reply"></i> Back
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+
+
   			<!-- CardOne -->
-        <div class="col-md-4 col-sm-6">
+        <!-- <div class="col-md-4 col-sm-6">
           <div class="card-container manual-flip">
             <div class="card">
               <div class="front cardOne">
@@ -42,10 +196,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- CardTwo -->
-        <div class="col-md-4 col-sm-6">
+        <!-- <div class="col-md-4 col-sm-6">
           <div class="card-container manual-flip">
             <div class="card">
               <div class="front cardOne">
@@ -83,10 +237,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>  -->
 
         <!-- CardThree -->
-        <div class="col-md-4 col-sm-6">
+        <!-- <div class="col-md-4 col-sm-6">
           <div class="card-container manual-flip">
             <div class="card">
               <div class="front cardOne">
@@ -124,10 +278,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- CardFour -->
-        <div class="col-md-4 col-sm-6">
+<!--         <div class="col-md-4 col-sm-6">
           <div class="card-container manual-flip">
             <div class="card">
               <div class="front cardOne">
@@ -165,10 +319,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- CardFive -->
-        <div class="col-md-4 col-sm-6">
+        <!-- <div class="col-md-4 col-sm-6">
           <div class="card-container manual-flip">
             <div class="card">
               <div class="front cardOne">
@@ -206,7 +360,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
   	</div>
   </div>          

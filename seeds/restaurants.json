@@ -11,5 +11,70 @@
 		"__v" : 0,
 		"imageUrl" : "/images/restaurantPictures/foodplace.jpg",
 		"category": "fastfood"
+	},
+	{
+		"name" : "Desi Palace", 
+		"clientname" : "desipalace", 
+		"address" : "Sardar Road", 
+		"city" : "Lahore", 
+		"country" : "Pakistan", 
+		"latitude" : 31.812358, 
+		"longitude" : 74.984153, 
+		"currentRush" : 10, 
+		"__v" : 0,
+		"imageUrl" : "/images/restaurantPictures/foodplace.jpg",
+		"category": "desi"
+	},
+	{
+		"name" : "BBQ House", 
+		"clientname" : "bbqhouse", 
+		"address" : "Link Road", 
+		"city" : "Lahore", 
+		"country" : "Pakistan", 
+		"latitude" : 30.112358, 
+		"longitude" : 74.184153, 
+		"currentRush" : 90, 
+		"__v" : 0,
+		"imageUrl" : "/images/restaurantPictures/foodplace.jpg",
+		"category": "desi"
+	},
+	{
+		"name" : "Chinese Dhaba", 
+		"clientname" : "chinesedhaba", 
+		"address" : "Tariq Road", 
+		"city" : "Lahore", 
+		"country" : "Pakistan", 
+		"latitude" : 32.012358, 
+		"longitude" : 73.984153, 
+		"currentRush" : 50, 
+		"__v" : 0,
+		"imageUrl" : "/images/restaurantPictures/foodplace.jpg",
+		"category": "chinese"
+	},
+	{
+		"name" : "Steak House", 
+		"clientname" : "steakhouse", 
+		"address" : "Model Road", 
+		"city" : "Lahore", 
+		"country" : "Pakistan", 
+		"latitude" : 31.312358, 
+		"longitude" : 74.484153, 
+		"currentRush" : 43, 
+		"__v" : 0,
+		"imageUrl" : "/images/restaurantPictures/foodplace.jpg",
+		"category": "continental"
+	},
+	{
+		"name" : "Thai Hut", 
+		"clientname" : "thaihut", 
+		"address" : "Posh Road", 
+		"city" : "Lahore", 
+		"country" : "Pakistan", 
+		"latitude" : 31.112358, 
+		"longitude" : 74.784153, 
+		"currentRush" : 42, 
+		"__v" : 0,
+		"imageUrl" : "/images/restaurantPictures/foodplace.jpg",
+		"category": "thai"
 	}
 ]
