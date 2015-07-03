@@ -40,9 +40,8 @@ router.post('/create', function(req, res, next) {
 	});
 });
 
-router.get('/prediction/:restaurantID', function(req, res, next) {
-	var numPredictions = 10; // number of future slots to predict
-	rushService.getPrediction(req.params.restaurantID, numPredictions, function(err, prediction) {
+router.get('/prediction/:restaurantID/:day', function(req, res, next) {
+	rushService.getPrediction(req.params.restaurantID, req.params.day.toLowerCase(), function(err, prediction) {
 		if (err) {
 			console.log("This error is from routes/rush.js = " + err);
 			return res.status(500).json({error: err}); // in case of error

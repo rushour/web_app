@@ -49,7 +49,7 @@ exports.addSearchHistoryRestaurant = function(_searchHistoryRestaurant, next) {
 							// the restaurant also exists
 							var newSearchHistoryRestaurant = new SearchHistoryRestaurant({
 								userID: _searchHistoryRestaurant.userID,
-								restaurantID: _searchHistoryRestaurant.restaurantID
+								restaurantID: _searchHistoryRestaurant.restaurantID,
 							});
 
 							newSearchHistoryRestaurant.save(function(err, searchHistoryRestaurant) {
