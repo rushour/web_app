@@ -1,10 +1,12 @@
 var RushAtRestaurant = require('../models/rush').RushAtRestaurant;
-var Lyric = require('lyric-node');
 
 exports.addRushAtRestaurant = function(_rushAtRestaurant, next) {
+	var _created = new Date(_rushAtRestaurant.year, _rushAtRestaurant.month, _rushAtRestaurant.date, _rushAtRestaurant.hours, _rushAtRestaurant.minutes, _rushAtRestaurant.seconds, 0);
 	var newRushAtRestaurant = new RushAtRestaurant({
 		restaurantID: _rushAtRestaurant.restaurantID,
-		rush: _rushAtRestaurant.rush
+		rush: _rushAtRestaurant.rush,
+		day: _rushAtRestaurant.day,
+		created: _created
 	});
 
 	newRushAtRestaurant.save(function(err, newRushAtRestaurant) {
@@ -21,34 +23,45 @@ exports.getRushHistoryOfRestaurant = function(_restaurantID, next) {
 	});
 };
 
-exports.getPrediction = function(_restaurantID, _numPredictions, next) {
-	// TODO consider past data of same days
-	// TODO consider exceptional days
-	// TODO sanity test results using excel's predcition functions
-	// TODO make sure to scale results between 0 and 100
-	RushAtRestaurant.find({restaurantID: _restaurantID}, 'rush created', function(err, rushHistory) {
+exports.getPrediction = function(_restaurantID, _day, next) {
+	var searchDays = [];
+	if (_day == "friday" || _day == "saturday" || _day == "sunday") {
+		// Weekdays
+		searchDays = ["friday", "saturday", "sunday"];
+	} else {
+		// Weekends
+		searchDays = ["monday", "tuesday", "wednesday", "thursday"];
+	}
+	
+	RushAtRestaurant.find({restaurantID: _restaurantID, day: {$in : searchDays}}, 'rush created day', function(err, rushHistory) {
 		if (err) {
 			return next(err, null);
-		} else {
-			var input = new Array();
-			input['x'] = new Array();
-			input['y'] = new Array();
-			var i = 0;
-			for (var stat in rushHistory) {
-				var created = rushHistory[stat]["created"];
-				var rush = rushHistory[stat]["rush"];
-				input['x'][i] = i;
-				input['y'][i] = parseInt(rush);
-				i++;
-			}
-			var estimationInput = new Array();
-			estimationInput['x'] = new Array();
-			for (var j = 0; j < _numPredictions; j++) {
-				estimationInput['x'][j] = i+j;
-			}
-			var input = Lyric.ordinalize(input);
-			var data = Lyric.applyModel(estimationInput, Lyric.buildModel(input));
-			next(null, data);
 		}
+		
+		// The index responds to the hour of day, so array size is 24
+		var predictions = [];
+		var numEntries = [];
+		for (var i = 0; i < 24; i++) {
+			predictions[i] = 0;
+			numEntries[i] = 0;
+		}
+
+		for (var stat in rushHistory) {
+			var created = rushHistory[stat]["created"];
+			var hours = parseInt(created.getHours());
+			var total = predictions[hours]*numEntries[hours];
+			numEntries[hours]++;
+			var rush = parseInt(rushHistory[stat]["rush"]);
+			predictions[hours] = Math.ceil((total+rush)/numEntries[hours]);
+		}
+
+		var jsonObj = [];
+		for (var i = 0; i < 24; i++) {
+			jsonObj.push({"hour": i, "rush": predictions[i]});
+		}
+		
+		predictions = JSON.parse(JSON.stringify(jsonObj));
+		console.log(predictions);
+		next(err, jsonObj);
 	});
 };

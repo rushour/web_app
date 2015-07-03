@@ -1,3 +1,7 @@
+$(window).bind("load", function() {
+  fillCard();
+});
+
 $(".ui-helper-hidden-accessibl").click(function(e) {
 		console.log("Here");
     if(e.target.className !== "ui-helper-hidden-accessible")
@@ -42,7 +46,7 @@ $(function () {
   $("#inputSearch").autocomplete({
     source: function (request, response) {
       $.ajax({
-        url: "http://rushour.pk:3000/search",
+        url: "http://localhost:3000/search",
         cache: true,
         type: "GET",
         data: request,  // request is the value of search input
@@ -148,7 +152,7 @@ $('a[href*=#]:not(a[name=whatshot-tabs])').click(function() {
 function fillCardBack(id, _userID) {
   console.log("...");
   var finalUrl;
-  finalUrl = 'http://rushour.pk:3000/restaurants/details/'+id;
+  finalUrl = 'http://localhost:3000/restaurants/details/'+id;
   
   $.ajax({
     type: "GET",
@@ -174,7 +178,7 @@ function fillCardBack(id, _userID) {
 	  $.ajax({
 	    type: "POST",
 	    cache: true,
-	    url: 'http://rushour.pk:3000/search/createSearchHistoryRestaurant',
+	    url: 'http://localhost:3000/search/createSearchHistoryRestaurant',
 	    dataType: 'json',
 	    data: {userID: _userID, restaurantID: id},
 	    
@@ -206,3 +210,61 @@ $(document).ready(function() {
 $(function() {
   $( document ).tooltip();
 });
+
+// Browse page carousel
+$('#myCarousel').carousel({
+  interval:false // remove interval for manual sliding
+});
+
+// when the carousel slides, load the ajax content
+$('#myCarousel').on('slid', function (e) {
+  
+	// get index of currently active item
+	var idx = $('#myCarousel .item.active').index();
+	var url = $('.item.active').data('url');
+
+	// ajax load from data-url
+  	$('.item').html("wait...");
+	$('.item').load(url,function(result){
+	    $('#myCarousel').carousel(idx);  
+	});
+  
+});
+
+// load first slide
+$('[data-slide-number=0]').load($('[data-slide-number=0]').data('url'),function(result){    
+	$('#myCarousel').carousel(0);
+});
+
+
+function fillCard() {
+  var finalUrl;
+  finalUrl = 'http://localhost:3000/restaurants';
+  
+  $.ajax({
+    type: "GET",
+    cache: true,
+    url: finalUrl,
+    dataType: 'json',
+    
+
+    success: function(data) {
+      console.log(data);
+      for (var i = 0 ; i < data.length ; i++) {
+        $("#img"+i).attr("src",data[i]["imageUrl"]);
+        $("#name"+i).html(data[i]["name"]);
+        $("#nameback"+i).html(data[i]["name"]);
+        $("#address"+i).html(data[i]["address"]);
+        $("#category"+i).html(data[i]["category"]);
+        $("#citycountry"+i).html(data[i]["city"] + " , " + data[i]["country"]);
+        $("#currentRush"+i).html(data[i]["currentRush"]);
+      }
+      // makeChart(id);
+      console.log(data);
+    }, 
+    error: function(e) { 
+      console.log(e);
+    } 
+  });
+  return;
+}
