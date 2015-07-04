@@ -99,7 +99,18 @@
             streetViewControl: false, // hide the yellow Street View pegman
             scaleControl: false, // allow users to zoom the Google Map
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center: latLng
+            center: latLng,
+            rotateControl: true,
+            scrollwheel: false,
+            panControl: true,
+            panControlOptions: {
+              position: google.maps.ControlPosition.TOP_RIGHT
+            },
+            zoomControl: true,
+            zoomControlOptions: {
+              style: google.maps.ZoomControlStyle.LARGE,
+              position: google.maps.ControlPosition.TOP_RIGHT
+            }
         };
      
         map = new google.maps.Map(document.getElementById('googlemaps'),
