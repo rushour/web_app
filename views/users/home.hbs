@@ -1,4 +1,19 @@
 <style>
+  .relativeDiv {
+    position: absolute;
+    height: 100%; 
+    width: 100%;
+    overflow: auto;
+    /*padding-right: -40px;*/
+  }
+  .relativeDiv #googlemaps { 
+    height: 100%; 
+    width: 100%; 
+    position:absolute;
+    top: 0; 
+    left: 0; 
+    z-index: 0;
+   }
  body {
      background: #fff;
      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -241,9 +256,8 @@
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
-      </div>
+    </div>
   	</div>
-  </div>          
 </section>
 
 
@@ -306,7 +320,7 @@
 <!-- Section for What's Hot -->
 <section class="container-fluid fill" id="whats-hot">
     <h1 class="text-center v-center">What's Hot.</h1>
-    <div class="col-lg-offset-2 col-lg-6 offset-sm-6 col-sm-6">
+    <div class="col-md-offset-2 col-md-4 offset-sm-3 col-sm-5">
       <h3>Deals of the day</h3>
       <div id="myCarouselVOne" class="carousel thumbnail fade">
         <div class="carousel-inner">
@@ -349,8 +363,8 @@
       </div>        
     </div>
 
-    <div class="col-lg-6 col-offset-sm-1 col-sm-4 col-md-6 col-offset-md-4">
-      <h3>Your Favorites</h3>
+    <div class="col-md-offset-1 col-md-4 offset-sm-1 col-sm-5">
+      <h3>We think you'll like</h3>
       <div id="myCarouselVTwo" class="carousel thumbnail fade">
         <div class="carousel-inner">
           <!-- Slide 1 -->
@@ -359,8 +373,8 @@
               <img src="" alt="">
               <div class="carousel-caption">
                 <h4>Title 1</h4>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
-                <a href="#" class="btn btn-info btn-sm">Read more</a>
+                <!-- <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p> -->
+                <!-- <a href="#" class="btn btn-info btn-sm">Read more</a> -->
               </div>
             
           </div>
@@ -369,8 +383,8 @@
             <img src="" alt="">
             <div class="carousel-caption">
               <h4>Title 2</h4>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
-              <a href="#" class="btn btn-danger btn-sm">Read more</a>
+              <!-- <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p> -->
+              <!-- <a href="#" class="btn btn-danger btn-sm">Read more</a> -->
             </div>
           </div>
           <!-- Slide 3 -->
@@ -378,8 +392,8 @@
             <img src="" alt="">
             <div class="carousel-caption">
               <h4>Title 3</h4>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
-              <a href="#" class="btn btn-warning btn-sm">Read more</a>
+              <!-- <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p> -->
+              <!-- <a href="#" class="btn btn-warning btn-sm">Read more</a> -->
             </div>
           </div>
         </div>
@@ -391,15 +405,13 @@
         </a>
       </div>        
     </div>
-
-    <div class="row"><br></div>
-  </div><!--/container-->
+    <!-- <div class="row"><br></div> -->
 </section>
 
 <!-- Section for Around Me -->
 <section class="container-fluid fill" id="around-me">
-    <h1 class="text-center v-center">Around Me.</h1>
-
-    <div class="row"><br></div>
-  </div><!--/container-->
+  <!-- <h1 class="text-center v-center">Around Me.</h1> -->
+  <div class="relativeDiv">
+    <div id="googlemaps"></div>
+  </div>
 </section>
