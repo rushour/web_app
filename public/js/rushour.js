@@ -1,5 +1,6 @@
 $(window).bind("load", function() {
   fillCard();
+  fillAds();
 });
 
 $(".ui-helper-hidden-accessibl").click(function(e) {
@@ -251,7 +252,8 @@ function fillCard() {
     success: function(data) {
       console.log(data);
       for (var i = 1 ; i <= data.length ; i++) {
-        $("#img"+i).attr("src",data[i]["imageUrl"]);
+        // $("#img"+i).attr("src",data[i]["imageUrl"]);
+        document.getElementById("img"+i).src = data[i]["imageUrl"];
         $("#name"+i).html(data[i]["name"]);
         $("#nameback"+i).html(data[i]["name"]);
         $("#address"+i).html(data[i]["address"]);
@@ -266,5 +268,40 @@ function fillCard() {
       console.log(e);
     } 
   });
+  return;
+}
+
+function fillAds() {
+  var finalUrl;
+  if (document.getElementById("userID") == null || document.getElementById("userID") == "") {
+    // return;
+  } else {
+    finalUrl = 'http://localhost:3000/ads/recommendations/' + document.getElementById("userID").innerHTML;
+    
+    $.ajax({
+      type: "GET",
+      cache: true,
+      url: finalUrl,
+      dataType: 'json',
+      
+    success: function(data) {
+      console.log(data);
+      for (var i = 1 ; i <= data.length ; i++) {
+        document.getElementById("img"+i).src = data[i]["imageUrl"];
+        $("#title"+i).html(data[i]["title"]);
+        // $("#nameback"+i).html(data[i]["name"]);
+        // $("#address"+i).html(data[i]["address"]);
+        // $("#category"+i).html(data[i]["category"]);
+        // $("#citycountry"+i).html(data[i]["city"] + " , " + data[i]["country"]);
+        // $("#currentRush"+i).html(data[i]["currentRush"]);
+      }
+      // makeChart(id);
+      console.log(data);
+    }, 
+      error: function(e) { 
+        console.log(e);
+      }  
+    });
+  }
   return;
 }
