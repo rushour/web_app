@@ -152,8 +152,27 @@ $('a[href*=#]:not(a[name=whatshot-tabs])').click(function() {
 
 function fillCardBack(id, _userID) {
   console.log("...");
+  var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   var finalUrl;
+  var prediction;
+  var date = new Date();
+  var day = date.getDay();
+  var hour = date.getHours();
+  var oneBefore;
+  var oneAfter;
+  if (hour == 0) {
+    oneBefore = hour-1;
+  } else {
+    oneBefore = 23
+  }
+  if (hour == 23) {
+    oneAfter = 0
+  } else {
+    oneAfter = hour+1;
+  }
+  console.log(days[day]);
   finalUrl = 'http://localhost:3000/restaurants/details/'+id;
+  prediction = 'http://localhost:3000/rush/prediction/'+id+'/'+days[day];
   
   $.ajax({
     type: "GET",
@@ -168,6 +187,24 @@ function fillCardBack(id, _userID) {
       document.getElementById("restaurantCity").innerHTML = data["city"];
       document.getElementById("restaurantCountry").innerHTML = data["country"];
       // makeChart(id);
+      console.log(data);
+    }, 
+    error: function(e) { 
+      console.log(e);
+    } 
+  });
+
+  $.ajax({
+    type: "GET",
+    cache: true,
+    url: prediction,
+    dataType: 'json',
+    
+    success: function(data){
+      document.getElementById("rushStat").innerHTML = data[hour]["rush"];
+      document.getElementById("rushStatA").innerHTML = data[oneAfter]["rush"];
+      document.getElementById("rushStatB").innerHTML = data[oneBefore]["rush"];
+      console.log("RushStats");
       console.log(data);
     }, 
     error: function(e) { 
@@ -277,6 +314,7 @@ function fillAds() {
     // return;
   } else {
     finalUrl = 'http://localhost:3000/ads/recommendations/' + document.getElementById("userID").innerHTML;
+    finalUrl = 
     
     $.ajax({
       type: "GET",
@@ -289,11 +327,6 @@ function fillAds() {
       for (var i = 1 ; i <= data.length ; i++) {
         document.getElementById("img"+i).src = data[i]["imageUrl"];
         $("#title"+i).html(data[i]["title"]);
-        // $("#nameback"+i).html(data[i]["name"]);
-        // $("#address"+i).html(data[i]["address"]);
-        // $("#category"+i).html(data[i]["category"]);
-        // $("#citycountry"+i).html(data[i]["city"] + " , " + data[i]["country"]);
-        // $("#currentRush"+i).html(data[i]["currentRush"]);
       }
       // makeChart(id);
       console.log(data);
