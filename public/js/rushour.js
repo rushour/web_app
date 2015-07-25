@@ -47,7 +47,7 @@ $(function () {
   $("#inputSearch").autocomplete({
     source: function (request, response) {
       $.ajax({
-        url: "http://localhost:3000/search",
+        url: "http://rushour.pk:3000/search",
         cache: true,
         type: "GET",
         data: request,  // request is the value of search input
@@ -171,8 +171,8 @@ function fillCardBack(id, _userID) {
     oneAfter = hour+1;
   }
   console.log(days[day]);
-  finalUrl = 'http://localhost:3000/restaurants/details/'+id;
-  prediction = 'http://localhost:3000/rush/prediction/'+id+'/'+days[day];
+  finalUrl = 'http://rushour.pk:3000/restaurants/details/'+id;
+  prediction = 'http://rushour.pk:3000/rush/prediction/'+id+'/'+days[day];
   
   $.ajax({
     type: "GET",
@@ -216,7 +216,7 @@ function fillCardBack(id, _userID) {
 	  $.ajax({
 	    type: "POST",
 	    cache: true,
-	    url: 'http://localhost:3000/search/createSearchHistoryRestaurant',
+	    url: 'http://rushour.pk:3000/search/createSearchHistoryRestaurant',
 	    dataType: 'json',
 	    data: {userID: _userID, restaurantID: id},
 	    
@@ -277,7 +277,7 @@ $('[data-slide-number=0]').load($('[data-slide-number=0]').data('url'),function(
 
 function fillCard() {
   var finalUrl;
-  finalUrl = 'http://localhost:3000/restaurants';
+  finalUrl = 'http://rushour.pk:3000/restaurants';
   
   $.ajax({
     type: "GET",
@@ -313,7 +313,7 @@ function fillAds() {
   if (document.getElementById("userID") == null || document.getElementById("userID") == "") {
     // return;
   } else {
-    finalUrl = 'http://localhost:3000/ads/recommendations/' + document.getElementById("userID").innerHTML;
+    finalUrl = 'http://rushour.pk:3000/ads/recommendations/' + document.getElementById("userID").innerHTML;
     finalUrl = 
     
     $.ajax({
@@ -338,3 +338,4 @@ function fillAds() {
   }
   return;
 }
+
